@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+
+{% block title %}Portfolio{% endblock %}
+
+{% block content %}
+
+    <section>
+        <h1>Portfolio</h1>
+        <p>Hi! I'm Isiakpona Chuks, a passionate software developer specializing, 
+            in full-stack development, mobile app development, Artificial intelligence, 
+            and machine learning. With 8 years of experience, I thrive on creating efficient, 
+            scalable, and user-friendly software solutions. My expertise lies in JavaScript, Python, 
+            Angular, React, and Node.js, and I'm always eager to learn and adapt to new technologies.</p>
+    </section>
+
+    <section class="projects">
+        <h1>Projects</h1>
+        {% for project in projects %}
+            <div class="project">
+                <h2><a href="portfolio/{{ project.endpoint }}">{{ project.name }}</a></h2>
+                <p>{{ project.description }}</p>
+            </div>
+        {% endfor %}
+    </section>    
+    
+{% endblock %}
+
+
+
+
+
+
+    

@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+{% block title %}Home{% endblock %}
+
+{% block content %}
+    <h1>Hi, I'm Isiakpona Chuks!</h1>
+    <p>I build web applications with Python, ReactApp, AngularApp and Django REST Framework, nodeJS for backend // JavaScript for frontend</p>
+    <p>I also develop mobileApp Framework, Artificial Intelligence and Ethical Hacking. </p>
+
+    {% if country == "Nigeria" %}
+        <h1>Currency is NGN</h1>
+    {% elif country == "usa" %}
+        <h1>Currency is USD</h1>
+    {% else %}
+        <h1>Your default currency set to BTC!</h1>
+    {% endif %}
+
+    {% if source %}
+        <h1>Thanks for visting through {{ source }}</h1>
+    {% endif %}
+{% endblock %}
+
+

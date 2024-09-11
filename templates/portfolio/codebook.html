@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+
+{% block title %}CodeBook Project{% endblock %}
+
+{% block content %}
+    <h1>About CodeBook</h1>
+    <img src="{{ url_for('static', filename='images/codebook.jpg') }}" alt="">
+    <p>CodeBook is a full functional ebook platform built exclusively with ReactApp deployed on Render Server and hosted on netlifyApp
+        check it out &nbsp;<a href="https://codebook-hub-ch.netlify.app" target="_blank">here</a>
+    </p>
+{% endblock %}
