@@ -12,7 +12,7 @@ def home():
 def about():
     context = {
         "name": "Isiakpona Chuks",
-        "description": "With expertise in web and mobile development (ReactApp, AngularApp, Python), as well as being a Google Digital Marketing and e-commerce Specialist, Google UX Designer, Project Management, Data Analyst, and Data Scientist. I am committed to continuous learning and skill enhancement. My focus on detail and dedication to excellence align with company standards. I'm proficient in Microsoft Office Suite, Google Workspace, cloud technologies, and equipped with strong communication, writing, analytical, and critical thinking skills, I am well-prepared to contribute to your team's success.",
+        "description": "With expertise in web and mobile development (ReactApp, AngularApp, Python), as well as being a Google Digital Marketing and e-commerce Specialist, Google UX Designer, Project Management, Data Analyst, and Data Scientist. I am committed to continuous learning and skill enhancement. My focus on detail and dedication to excellence align with company standards. I'm proficient in Microsoft Office Suite, Google Workspace, and cloud technologies, and I am equipped with strong communication, writing, analytical, and critical thinking skills. I am well-prepared to contribute to your team's success."
     }
     return render_template("about.html", context=context)
 
