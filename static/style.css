@@ -1,5 +1,15 @@
 @import url(http://fonts.googleapis.com/css?family=Karla:400,700);
 
+/* Color Variables */
+:root {
+    --primary-color: #00579e;
+    --hover-color: #eeeeee;
+    --text-color: #333;
+    --background-color: #ffffff;
+    --border-color: #c1c1c1;
+}
+
+/* Global Styles */
 * {
     margin: 0;
     padding: 0;
@@ -9,7 +19,8 @@
 
 a {
     text-decoration: none;
-    color: #000000;
+    color: var(--text-color);
+    transition: color 0.3s ease;
 }
 
 li {
@@ -18,13 +29,14 @@ li {
 
 p {
     font-size: 18px;
-    margin: 10px 0px;
+    margin: 10px 0;
 }
 
+/* Header Navigation */
 header nav {
     padding: 10px;
     font-size: 22px;
-    border-bottom: 1px solid #c1c1c1;
+    border-bottom: 1px solid var(--border-color);
 }
 
 header nav ul {
@@ -41,25 +53,28 @@ header nav ul li {
 }
 
 header nav ul li:hover {
-    background-color: #eeeeee;
+    background-color: var(--hover-color);
     border-radius: 5px;
 }
 
 header nav ul li a {
-    color: #333;
+    color: var(--text-color);
     font-weight: 500;
 }
 
+/* Main Content */
 main {
     min-height: 60vh;
     margin: 75px 100px;
 }
 
+/* Images */
 img {
     border-radius: 5px;
-    margin: 20px 0px;
+    margin: 20px 0;
 }
 
+/* Projects Section */
 section.projects {
     margin-top: 50px;
 }
@@ -73,9 +88,10 @@ div.project {
 }
 
 div.project h2 a {
-    color: #00579e;
+    color: var(--primary-color);
 }
 
+/* Footer */
 footer {
     text-align: center;
     padding: 20px;
@@ -92,8 +108,4 @@ footer {
     header nav ul {
         flex-direction: column;
     }
-}
-    padding: 20px;
-    font-size: 22px;
-    border-top: 1px solid #c1c1c1;
 }
