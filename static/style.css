@@ -80,5 +80,20 @@ footer {
     text-align: center;
     padding: 20px;
     font-size: 22px;
+    border-top: 1px solid var(--border-color);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    main {
+        margin: 50px 20px;
+    }
+
+    header nav ul {
+        flex-direction: column;
+    }
+}
+    padding: 20px;
+    font-size: 22px;
     border-top: 1px solid #c1c1c1;
 }
