@@ -34,10 +34,13 @@ p {
 
 /* Header Navigation */
 header nav {
-    padding: 10px;
+    padding: 10px 20px;
     font-size: 22px;
     border-bottom: 1px solid var(--border-color);
     position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 header nav ul {
@@ -72,6 +75,10 @@ header nav ul li a {
     cursor: pointer;
     padding: 10px;
     z-index: 1000;
+    position: absolute;
+    left: 20px;
+    top: 50%;
+    transform: translateY(-50%);
 }
 
 .hamburger span {
@@ -138,14 +145,20 @@ footer {
         margin: 50px 20px;
     }
 
+    header nav {
+        justify-content: flex-start;
+    }
+
     .hamburger {
         display: flex;
+        position: static;
+        transform: none;
     }
 
     header nav ul {
         flex-direction: column;
         position: absolute;
-        top: 60px;
+        top: 100%;
         left: 0;
         width: 100%;
         background-color: var(--background-color);
@@ -154,6 +167,7 @@ footer {
         max-height: 0;
         overflow: hidden;
         transition: max-height 0.3s ease;
+        margin: 0;
     }
 
     header nav ul.active {
