@@ -33,6 +33,10 @@ p {
 }
 
 /* Header Navigation */
+header {
+    background-color: var(--background-color);
+}
+
 header nav {
     padding: 10px 20px;
     font-size: 22px;
@@ -41,6 +45,7 @@ header nav {
     display: flex;
     justify-content: center;
     align-items: center;
+    width: 100%;
 }
 
 header nav ul {
@@ -50,6 +55,7 @@ header nav ul {
     align-items: center;
     max-width: 500px;
     margin: auto;
+    width: 100%;
 }
 
 header nav ul li {
@@ -74,11 +80,12 @@ header nav ul li a {
     border: none;
     cursor: pointer;
     padding: 10px;
-    z-index: 1000;
+    z-index: 1001;
     position: absolute;
     left: 20px;
     top: 50%;
     transform: translateY(-50%);
+    gap: 5px;
 }
 
 .hamburger span {
@@ -146,21 +153,22 @@ footer {
     }
 
     header nav {
+        flex-wrap: wrap;
         justify-content: flex-start;
+        padding: 10px;
     }
 
     .hamburger {
         display: flex;
-        position: static;
-        transform: none;
     }
 
     header nav ul {
+        order: 3;
+        width: 100%;
         flex-direction: column;
         position: absolute;
         top: 100%;
         left: 0;
-        width: 100%;
         background-color: var(--background-color);
         border-top: 1px solid var(--border-color);
         box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
@@ -171,13 +179,19 @@ footer {
     }
 
     header nav ul.active {
-        max-height: 300px;
+        max-height: 400px;
+        overflow-y: auto;
     }
 
     header nav ul li {
         width: 100%;
         text-align: center;
-        padding: 15px;
+        padding: 15px 10px;
+        border-bottom: 1px solid #f0f0f0;
+    }
+
+    header nav ul li:last-child {
+        border-bottom: none;
     }
 
     header nav ul li:hover {
