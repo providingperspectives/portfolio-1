@@ -3,8 +3,9 @@
 {% block title %}Recipebook Project{% endblock %}
 
 {% block content %}
-    <h1>About taskmate</h1>
-    <img src="{{ url_for('static', filename='images/project.jpg') }}" alt="">
-    <p>Recipebook is a full recipe project with AngularApp deployed on FirebaseApp check it out here &nbsp;<a href="https://mypro-81325.web.app/auth" target="_blank">Recipebook</a>
-    </p>
+    <article class="card">
+        <h1>About Recipebook</h1>
+        <img src="{{ url_for('static', filename='images/recipebook.jpg') }}" alt="Recipebook" style="width:100%;border-radius:8px;margin:12px 0">
+        <p>Recipebook is a recipe app built with Angular and deployed on Firebase. Check it out: <a href="https://mypro-81325.web.app/auth" target="_blank">Recipebook</a></p>
+    </article>
 {% endblock %}

@@ -6,35 +6,34 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{% block title %}{% endblock %} - Portfolio</title>
 
-    <link rel="shortcut icon" href="{{ url_for('static', filename='images/favicon.ico') }}" type="image/x-icon">
+    <link rel="icon" href="{{ url_for('static', filename='images/favicon.svg') }}" type="image/svg+xml">
+    <link rel="shortcut icon" href="{{ url_for('static', filename='images/favicon.svg') }}" type="image/x-icon">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Poppins:wght@400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 <body>
     <header>
-        <nav>
-            <button class="hamburger" id="hamburger" aria-label="Toggle navigation">
-                <span></span>
-                <span></span>
-                <span></span>
-            </button>
-            <ul id="nav-menu">
-                <li>
-                    <a href="{{ url_for('main.home') }}">Home</a>
-                </li>
-                <li>
-                    <a href="{{ url_for('main.about') }}">About</a>
-                </li>
-                <li>
-                    <a href="{{ url_for('main.contact') }}">Contact</a>
-                </li>
-                <li>
-                    <a href="{{ url_for('main.portfolio') }}">Portfolio</a>
-                </li>
-            </ul>
-        </nav>
+        <div class="container">
+            <nav>
+                <div class="brand">Isiakpona Chuks</div>
+                <button class="hamburger" id="hamburger" aria-label="Toggle navigation">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+                <ul id="nav-menu">
+                    <li><a href="{{ url_for('main.home') }}">Home</a></li>
+                    <li><a href="{{ url_for('main.about') }}">About</a></li>
+                    <li><a href="{{ url_for('main.contact') }}">Contact</a></li>
+                    <li><a href="{{ url_for('main.portfolio') }}">Portfolio</a></li>
+                </ul>
+            </nav>
+        </div>
     </header>
     <main>
-        {% block content %}{% endblock %}
+        <div class="container">
+            {% block content %}{% endblock %}
+        </div>
     </main>    
     <footer>
         <p>&copy; 2024 - Isiakpona's Portfolio</p>
@@ -43,18 +42,75 @@
         const hamburger = document.getElementById('hamburger');
         const navMenu = document.getElementById('nav-menu');
 
-        hamburger.addEventListener('click', function() {
-            hamburger.classList.toggle('active');
-            navMenu.classList.toggle('active');
-        });
+        if (hamburger) {
+            hamburger.addEventListener('click', function() {
+                hamburger.classList.toggle('active');
+                navMenu.classList.toggle('active');
+            });
+        }
 
         // Close menu when clicking on a link
         document.querySelectorAll('#nav-menu li a').forEach(link => {
             link.addEventListener('click', function() {
-                hamburger.classList.remove('active');
+                if (hamburger) hamburger.classList.remove('active');
                 navMenu.classList.remove('active');
             });
         });
+
+        // Lightbox / project preview
+        function openLightbox(src, title, desc, endpoint){
+            const lb = document.getElementById('lightbox');
+            lb.querySelector('img').src = src;
+            lb.querySelector('.info h3').textContent = title;
+            lb.querySelector('.info p').textContent = desc;
+            lb.querySelector('.view-link').href = '/portfolio/' + endpoint;
+            lb.classList.add('open');
+            lb.setAttribute('aria-hidden','false');
+            lb.querySelector('.close').focus();
+        }
+        function closeLightbox(){
+            const lb = document.getElementById('lightbox');
+            lb.classList.remove('open');
+            lb.setAttribute('aria-hidden','true');
+        }
+
+        document.addEventListener('click', function(e){
+            const thumb = e.target.closest('.thumb-wrap');
+            if(thumb){
+                const img = thumb.querySelector('img');
+                const src = img.src;
+                const title = thumb.dataset.title || '';
+                const desc = thumb.dataset.desc || '';
+                const endpoint = thumb.dataset.endpoint || '';
+                e.preventDefault();
+                openLightbox(src, title, desc, endpoint);
+            }
+
+            if(e.target.matches('#lightbox') || e.target.closest('#lightbox .close')){
+                closeLightbox();
+            }
+        });
+
+        document.addEventListener('keydown', function(e){
+            if(e.key === 'Escape') closeLightbox();
+        });
     </script>
+
+    <!-- Lightbox markup -->
+    <div id="lightbox" class="lightbox" role="dialog" aria-hidden="true">
+        <div class="panel">
+            <button class="close" aria-label="Close">✕</button>
+            <img src="" alt="Preview">
+            <div class="meta">
+                <div class="info">
+                    <h3></h3>
+                    <p></p>
+                </div>
+                <div class="actions">
+                    <a class="btn btn-ghost view-link" href="#">View Project</a>
+                </div>
+            </div>
+        </div>
+    </div>
 </body>
 </html>

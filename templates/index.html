@@ -3,20 +3,37 @@
 {% block title %}Home{% endblock %}
 
 {% block content %}
-    <h1>Hi, I'm Isiakpona Chuks!</h1>
-    <p>I build web applications with Python, ReactApp, AngularApp and Django REST Framework, nodeJS for backend // JavaScript for frontend</p>
-    <p>I also develop mobileApp Framework, Artificial Intelligence and Ethical Hacking. </p>
+    <section class="hero">
+        <div class="left">
+            <h1>Hi, I'm Isiakpona Chuks — Software Developer</h1>
+            <p>I build full-stack web applications with Python, Node.js, React, and ReactNative. I also work on mobile Apps, AI-RAG System, and APIs.</p>
+            <div style="margin-top:18px">
+                <a class="btn" href="{{ url_for('main.portfolio') }}">View my projects</a>
+            </div>
+            <div style="margin-top:18px" class="badges">
+                <span class="badge">Python</span>
+                <span class="badge">React</span>
+                <span class="badge">Node.js</span>
+                <span class="badge">AI / ML</span>
+                 <span class="badge">ReactNative</span>
+            </div>
+        </div>
+        <div class="right">
+            <!-- avatar image -->
+            <img class="avatar" src="{{ url_for('static', filename='images/profile.jpg') }}" alt="Profile avatar">
+        </div>
+    </section>
 
     {% if country == "Nigeria" %}
-        <h1>Currency is NGN</h1>
+        <p style="margin-top:18px">Currency is NGN</p>
     {% elif country == "usa" %}
-        <h1>Currency is USD</h1>
+        <p style="margin-top:18px">Currency is USD</p>
     {% else %}
-        <h1>Your default currency set to BTC!</h1>
+        <p style="margin-top:18px">Your default currency set to BTC!</p>
     {% endif %}
 
     {% if source %}
-        <h1>Thanks for visting through {{ source }}</h1>
+        <p style="margin-top:12px">Thanks for visiting through {{ source }}</p>
     {% endif %}
 {% endblock %}
 

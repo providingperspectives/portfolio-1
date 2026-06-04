@@ -3,9 +3,9 @@
 {% block title %}CodeBook Project{% endblock %}
 
 {% block content %}
-    <h1>About CodeBook</h1>
-    <img src="{{ url_for('static', filename='images/codebook.jpg') }}" alt="">
-    <p>CodeBook is a full functional ebook platform built exclusively with ReactApp deployed on Render Server and hosted on netlifyApp
-        check it out here &nbsp;<a href="https://codebook-hub-ch.netlify.app" target="_blank">CodeBook</a>
-    </p>
+    <article class="card">
+        <h1>About CodeBook</h1>
+        <img src="{{ url_for('static', filename='images/codebook.jpg') }}" alt="CodeBook" style="width:100%;border-radius:8px;margin:12px 0">
+        <p>CodeBook is an ebook platform built with React and deployed on Render. Check it out: <a href="https://codebook-hub-ch.netlify.app" target="_blank">CodeBook</a></p>
+    </article>
 {% endblock %}

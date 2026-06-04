@@ -3,7 +3,19 @@
 {% block title %}About{% endblock %}
 
 {% block content %}
-    <h1>About {{ context.name }}</h1>
-    <img src="{{ url_for('static', filename='images/about.jpg') }}" alt="">
-    <p>{{ context.description }}</p>
+    <section class="hero" style="padding-top:12px;padding-bottom:12px">
+        <div class="left">
+            <h1>About {{ context.name }}</h1>
+            <p>{{ context.description }}</p>
+            <div style="margin-top:18px" class="badges">
+                <span class="badge">Full-stack</span>
+                <span class="badge">Mobile</span>
+                <span class="badge">AI / ML</span>
+                <span class="badge">ReactNative</span>
+            </div>
+        </div>
+        <div class="right">
+            <img src="{{ url_for('static', filename='images/about.jpg') }}" alt="About image" style="max-width:320px;border-radius:12px;display:block">
+        </div>
+    </section>
 {% endblock %}

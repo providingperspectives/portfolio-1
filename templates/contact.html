@@ -3,9 +3,33 @@
 {% block title %}Contact{% endblock %}
 
 {% block content %}
-    <h1>Let's Talk!</h1>
-    <p>I'm always open to discussing new projects or opportunities. Feel free to reach out!</p>
-    <p><strong>Email:</strong>juliusrlnd@gmail.com.</p>
-    <p><strong>LinkedIn:</strong><a href="https://www.linkedin.com/in/isiakpona-chuks-14b93235" target="_blank">Profile</a>.</p>
-    <p><strong>Github:</strong><a href="https://github.com/providingperspectives" target="_blank">Github Projects</a>.</p>
+    <section style="padding:24px;background:transparent;border-radius:12px">
+        <h1>Let's Talk!</h1>
+        <p>I'm always open to discussing new projects or opportunities. Feel free to reach out!</p>
+
+        {% if request.args.get('sent') == '1' %}
+            <div class="card" style="margin-top:12px;padding:12px;background:linear-gradient(180deg, rgba(255,255,255,0.02), transparent);">
+                <p>Thanks — your message was received. I'll get back to you soon.</p>
+            </div>
+        {% endif %}
+
+        <form action="{{ url_for('main.contact') }}" method="post" style="margin-top:18px;max-width:600px;display:flex;flex-direction:column;gap:12px">
+            <input type="text" name="name" placeholder="Your name" required style="padding:10px;border-radius:8px;border:1px solid rgba(255,255,255,0.04);background:transparent;color:var(--text)">
+            <input type="email" name="email" placeholder="Your email" required style="padding:10px;border-radius:8px;border:1px solid rgba(255,255,255,0.04);background:transparent;color:var(--text)">
+            <textarea name="message" placeholder="Message" rows="6" required style="padding:10px;border-radius:8px;border:1px solid rgba(255,255,255,0.04);background:transparent;color:var(--text)"></textarea>
+            <button class="btn" type="submit">Send message</button>
+        </form>
+
+        <div style="margin-top:18px;display:flex;flex-direction:column;gap:10px;max-width:480px">
+            <div class="card">
+                <p><strong>Email:</strong> <a href="mailto:juliusrlnd@gmail.com">juliusrlnd@gmail.com</a></p>
+            </div>
+            <div class="card">
+                <p><strong>LinkedIn:</strong> <a href="https://www.linkedin.com/in/isiakpona-chuks-14b93235" target="_blank">Profile</a></p>
+            </div>
+            <div class="card">
+                <p><strong>Github:</strong> <a href="https://github.com/providingperspectives" target="_blank">Github Projects</a></p>
+            </div>
+        </div>
+    </section>
 {% endblock %}

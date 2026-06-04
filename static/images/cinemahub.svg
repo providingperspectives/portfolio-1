@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="450" viewBox="0 0 800 450">
+  <defs>
+    <linearGradient id="g" x1="0" x2="1">
+      <stop offset="0" stop-color="#7c3aed" />
+      <stop offset="1" stop-color="#06b6d4" />
+    </linearGradient>
+  </defs>
+  <rect width="100%" height="100%" fill="#071428" rx="16"/>
+  <g transform="translate(40,40)" fill="#e6eef8" font-family="Inter, Arial">
+    <rect x="0" y="0" width="300" height="180" rx="12" fill="url(#g)" opacity="0.95"/>
+    <text x="20" y="120" font-size="36" fill="#fff">CinemaHub</text>
+  </g>
+</svg>

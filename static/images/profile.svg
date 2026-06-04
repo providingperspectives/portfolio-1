@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="320" height="320" viewBox="0 0 200 200" role="img" aria-label="Profile">
+  <rect width="100%" height="100%" fill="#0b1220" rx="16"/>
+  <g transform="translate(100,60)">
+    <circle cx="0" cy="0" r="36" fill="#1f2937" stroke="#2b3440" stroke-width="2"/>
+    <path d="M-30 70c8-18 50-18 60 0" fill="#111827" stroke="#26303a" stroke-width="2" stroke-linecap="round"/>
+  </g>
+  <g transform="translate(50,140)">
+    <rect x="0" y="0" width="100" height="20" rx="10" fill="#0f1724"/>
+  </g>
+</svg>

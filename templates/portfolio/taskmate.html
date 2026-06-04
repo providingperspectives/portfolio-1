@@ -3,8 +3,9 @@
 {% block title %}CodeBook Project{% endblock %}
 
 {% block content %}
-    <h1>About taskmate</h1>
-    <img src="{{ url_for('static', filename='images/taskmate.jpg') }}" alt="">
-    <p>Taskmate is a full task project with ReactApp deployed on netlifyApp check it out here &nbsp;<a href="https://task-chuks.netlify.app" target="_blank">Taskmate</a>
-    </p>
+    <article class="card">
+        <h1>About Taskmate</h1>
+        <img src="{{ url_for('static', filename='images/taskmate.jpg') }}" alt="Taskmate" style="width:100%;border-radius:8px;margin:12px 0">
+        <p>Taskmate is a task management app built with React. Check it here: <a href="https://task-chuks.netlify.app" target="_blank">Taskmate</a></p>
+    </article>
 {% endblock %}
