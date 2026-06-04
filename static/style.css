@@ -33,10 +33,19 @@ p {
 }
 
 /* Header Navigation */
+header {
+    background-color: var(--background-color);
+}
+
 header nav {
-    padding: 10px;
+    padding: 10px 20px;
     font-size: 22px;
     border-bottom: 1px solid var(--border-color);
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
 }
 
 header nav ul {
@@ -46,6 +55,7 @@ header nav ul {
     align-items: center;
     max-width: 500px;
     margin: auto;
+    width: 100%;
 }
 
 header nav ul li {
@@ -60,6 +70,43 @@ header nav ul li:hover {
 header nav ul li a {
     color: var(--text-color);
     font-weight: 500;
+}
+
+/* Hamburger Menu */
+.hamburger {
+    display: none;
+    flex-direction: column;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 10px;
+    z-index: 1001;
+    position: absolute;
+    left: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+    gap: 5px;
+}
+
+.hamburger span {
+    width: 25px;
+    height: 3px;
+    background-color: var(--text-color);
+    margin: 3px 0;
+    transition: all 0.3s ease;
+    border-radius: 3px;
+}
+
+.hamburger.active span:nth-child(1) {
+    transform: rotate(45deg) translate(8px, 8px);
+}
+
+.hamburger.active span:nth-child(2) {
+    opacity: 0;
+}
+
+.hamburger.active span:nth-child(3) {
+    transform: rotate(-45deg) translate(8px, -8px);
 }
 
 /* Main Content */
@@ -105,7 +152,50 @@ footer {
         margin: 50px 20px;
     }
 
+    header nav {
+        flex-wrap: wrap;
+        justify-content: flex-start;
+        padding: 10px;
+    }
+
+    .hamburger {
+        display: flex;
+    }
+
     header nav ul {
+        order: 3;
+        width: 100%;
         flex-direction: column;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        background-color: var(--background-color);
+        border-top: 1px solid var(--border-color);
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.3s ease;
+        margin: 0;
+    }
+
+    header nav ul.active {
+        max-height: 400px;
+        overflow-y: auto;
+    }
+
+    header nav ul li {
+        width: 100%;
+        text-align: center;
+        padding: 15px 10px;
+        border-bottom: 1px solid #f0f0f0;
+    }
+
+    header nav ul li:last-child {
+        border-bottom: none;
+    }
+
+    header nav ul li:hover {
+        background-color: var(--hover-color);
+        border-radius: 0;
     }
 }
