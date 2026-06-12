@@ -1,23 +1,62 @@
 {% extends 'base.html' %}
 
-{% block title %}About{% endblock %}
+{% block title %}About Me - Isiakpona Chuks{% endblock %}
 
 {% block content %}
-    <section class="hero" style="padding-top:12px;padding-bottom:12px">
-        <div class="left">
-            <h1>About {{ context.name }}</h1>
-            <p>{{ context.description }}</p>
-            <div style="margin-top:18px" class="badges">
-                <span class="badge">Full-Stack</span>
-                <span class="badge">Mobile App</span>
-                <span class="badge">AI / ML</span>
-                <span class="badge">ReactNative</span>
-                 <span class="badge">Angular</span>
-                  <span class="badge">React</span>
-            </div>
+<section style="max-width: 850px; margin: 0 auto; padding: 24px 0;">
+    
+    <header style="margin-bottom: 40px;">
+        <h1 style="font-size: 2.5rem; margin-bottom: 16px;">About Isiakpona Chuks</h1>
+        <p style="font-size: 1.2rem; line-height: 1.6; opacity: 0.95; font-weight: 400;">
+            {{ context.biography }}
+        </p>
+    </header>
+
+    <hr style="border: 0; border-top: 1px solid rgba(0,0,0,0.1); margin: 32px 0;">
+
+    <h2 style="margin-bottom: 24px; font-size: 1.6rem;">Engineered for Full-Lifecycle AI Products</h2>
+    <p style="margin-bottom: 24px; line-height: 1.6; opacity: 0.85;">
+        Building complex autonomous systems requires more than writing algorithms. I combine formal machine learning principles with rigorous product disciplines to deliver highly scalable, production-grade software:
+    </p>
+
+    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 24px; min-width: 280px; margin-bottom: 40px;">
+        
+        <div style="border: 1px solid #e2e8f0; border-radius: 8px; padding: 20px; background: var(--card-bg, #f7fafc);">
+            <h3 style="font-size: 1.1rem; margin-bottom: 8px; color: #3182ce; font-weight: 700;">🤖 AI & Backend Infrastructure</h3>
+            <p style="font-size: 0.95rem; line-height: 1.5; opacity: 0.85; margin: 0;">
+                Designing event-driven serverless architectures, asynchronous processing streams via FastAPI, and optimizing sub-second query latency within high-dimensional vector index spaces (Pinecone).
+            </p>
         </div>
-        <div class="right">
-            <img src="{{ url_for('static', filename='images/about.png') }}" alt="About image" style="max-width:320px;border-radius:12px;display:block">
+
+        <div style="border: 1px solid #e2e8f0; border-radius: 8px; padding: 20px; background: var(--card-bg, #f7fafc);">
+            <h3 style="font-size: 1.1rem; margin-bottom: 8px; color: #3182ce; font-weight: 700;">📊 Data Science & Analytics</h3>
+            <p style="font-size: 0.95rem; line-height: 1.5; opacity: 0.85; margin: 0;">
+                Leveraging statistical data modeling, pattern recognition, and pipeline analysis to inform orchestration logic—ensuring unstructured LLM data transformations parse reliably.
+            </p>
         </div>
+
+        <div style="border: 1px solid #e2e8f0; border-radius: 8px; padding: 20px; background: var(--card-bg, #f7fafc);">
+            <h3 style="font-size: 1.1rem; margin-bottom: 8px; color: #3182ce; font-weight: 700;">🎨 Google UX Design Certified</h3>
+            <p style="font-size: 0.95rem; line-height: 1.5; opacity: 0.85; margin: 0;">
+                Bridging backend complexity with intuitive human workflows. I treat client workspaces, interactive loading sequences, and error visualization states as critical components of system design.
+            </p>
+        </div>
+
+        <div style="border: 1px solid #e2e8f0; border-radius: 8px; padding: 20px; background: var(--card-bg, #f7fafc);">
+            <h3 style="font-size: 1.1rem; margin-bottom: 8px; color: #3182ce; font-weight: 700;">💼 Technical Project Management</h3>
+            <p style="font-size: 0.95rem; line-height: 1.5; opacity: 0.85; margin: 0;">
+                Managing infrastructure timelines, evaluating stakeholder constraints, and establishing strict operational milestones—ensuring software deployments map cleanly to strategic business objectives.
+            </p>
+        </div>
+
+    </div>
+
+    <section style="background: rgba(49, 130, 206, 0.05); border-left: 4px solid #3182ce; padding: 20px; border-radius: 0 8px 8px 0;">
+        <h3 style="margin-top: 0; font-size: 1.1rem; margin-bottom: 6px;">Continuous R&D Execution</h3>
+        <p style="margin: 0; font-size: 0.95rem; line-height: 1.6; opacity: 0.9;">
+            Whether implementing Domain-Driven Design (DDD) to protect critical system boundaries or optimizing multi-tenant retrieval-augmented generation flows, I am committed to deep technical execution and continuous learning within the ever-evolving intelligent systems landscape.
+        </p>
     </section>
+
+</section>
 {% endblock %}

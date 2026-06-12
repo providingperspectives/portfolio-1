@@ -112,5 +112,106 @@
             </div>
         </div>
     </div>
+
+    <button id="agent-chat-toggle" class="agent-chat-fab" aria-label="Open AI Assistant">
+        <span>💬</span>
+    </button>
+
+    <div id="agent-chat-drawer" class="agent-chat-drawer" aria-hidden="true">
+        <div class="agent-drawer-header">
+            <h3>System Copilot</h3>
+            <button id="agent-drawer-close" aria-label="Close Assistant">✕</button>
+        </div>
+        
+        <div id="agent-chat-messages" class="agent-drawer-body">
+            <div class="message system-msg">
+                Hello! I am Chuks' Portfolio AI Assistant. Ask me anything about his technical stack, architecture patterns, or projects like MentorQA.
+            </div>
+        </div>
+        
+        <div class="agent-drawer-footer">
+            <input type="text" id="agent-user-input" placeholder="Ask about Chuks' stack..." autocomplete="off">
+            <button id="agent-send-btn">Send</button>
+        </div>
+    </div>
+
+    <script>
+    document.addEventListener("DOMContentLoaded", function() {
+        const chatFab = document.getElementById("agent-chat-toggle");
+        const chatDrawer = document.getElementById("agent-chat-drawer");
+        const closeBtn = document.getElementById("agent-drawer-close");
+        const sendBtn = document.getElementById("agent-send-btn");
+        const userInput = document.getElementById("agent-user-input");
+        const messagesContainer = document.getElementById("agent-chat-messages");
+
+        // Make sure elements exist before binding listeners
+        if (chatFab && chatDrawer) {
+            // Open Drawer
+            chatFab.addEventListener("click", () => {
+                chatDrawer.classList.add("open");
+                chatDrawer.setAttribute("aria-hidden", "false");
+                if (userInput) userInput.focus();
+            });
+        }
+
+        if (closeBtn && chatDrawer) {
+            // Close Drawer
+            closeBtn.addEventListener("click", () => {
+                chatDrawer.classList.remove("open");
+                chatDrawer.setAttribute("aria-hidden", "true");
+            });
+        }
+
+        // Async Payload Delivery Dispatcher
+        async function sendMessage() {
+            if (!userInput || !messagesContainer) return;
+            
+            const queryText = userInput.value.trim();
+            if (!queryText) return;
+
+            appendMessage(queryText, "user-msg");
+            userInput.value = "";
+
+            const loadingDiv = appendMessage("Thinking...", "system-msg");
+
+            try {
+                const response = await fetch("/api/agent/chat", {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({ message: queryText })
+                });
+
+                const data = await response.json();
+                loadingDiv.remove();
+
+                if (response.ok) {
+                    appendMessage(data.response, "system-msg");
+                } else {
+                    appendMessage(data.error || "Systems disruption encountered.", "system-msg");
+                }
+            } catch (error) {
+                if (loadingDiv) loadingDiv.remove();
+                appendMessage("Unable to reach inference engine gateway.", "system-msg");
+            }
+        }
+
+        function appendMessage(text, className) {
+            if (!messagesContainer) return;
+            const msgDiv = document.createElement("div");
+            msgDiv.className = `message ${className}`;
+            msgDiv.textContent = text;
+            messagesContainer.appendChild(msgDiv);
+            messagesContainer.scrollTop = messagesContainer.scrollHeight;
+            return msgDiv;
+        }
+
+        if (sendBtn) sendBtn.addEventListener("click", sendMessage);
+        if (userInput) {
+            userInput.addEventListener("keydown", function(e) {
+                if (e.key === "Enter") sendMessage();
+            });
+        }
+    });
+    </script>
 </body>
 </html>

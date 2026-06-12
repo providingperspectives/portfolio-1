@@ -1,0 +1,119 @@
+{% extends 'base.html' %}
+
+{% block title %}System Specs: ELA NLP Pipeline{% endblock %}
+
+{% block content %}
+<article style="max-width: 900px; margin: 0 auto; padding: 24px 0;">
+    
+    <nav style="margin-bottom: 24px; font-size: 0.9rem;">
+        <a href="{{ url_for('main.portfolio') }}" style="text-decoration: none; color: #3182ce;">&larr; Back to Systems Portfolio</a>
+    </nav>
+
+    <header style="margin-bottom: 32px;">
+        <div style="display: inline-block; background: #e2e8f0; color: #4a5568; font-size: 0.75rem; font-family: monospace; font-weight: 700; padding: 4px 8px; border-radius: 4px; margin-bottom: 12px; text-transform: uppercase; letter-spacing: 0.05em;">
+            R&D Lifecycle: Production Iterations ELA 1-4
+        </div>
+        <h1 style="font-size: 2.5rem; line-height: 1.1; margin-bottom: 12px;">English Language Assessment (ELA) Series</h1>
+        <p style="font-size: 1.2rem; opacity: 0.8; line-height: 1.6;">
+            An iterative natural language processing (NLP) evaluation framework designed to transition automated grading pipelines from basic string-matching to dense semantic vector validation against complex multi-tiered evaluation rubrics.
+        </p>
+    </header>
+
+    <hr style="border: 0; border-top: 1px solid rgba(0,0,0,0.1); margin: 32px 0;">
+
+    <section style="margin-bottom: 40px;">
+        <h2>The Architecture Evolution (Lifecycle Log)</h2>
+        <p style="margin-bottom: 24px; line-height: 1.6;">
+            Engineering AI evaluation engines requires constant optimization. Rather than deploying a static model, the ELA system was refactored across four distinct major versions to optimize token efficiency, memory retrieval speeds, and grading accuracy:
+        </p>
+
+        <div style="position: relative; border-left: 2px solid #e2e8f0; padding-left: 20px; margin-left: 10px;">
+            
+            <div style="margin-bottom: 28px; position: relative;">
+                <div style="position: absolute; left: -26px; top: 4px; background: #cbd5e0; width: 10px; height: 10px; border-radius: 50%;"></div>
+                <h3 style="font-size: 1.1rem; margin-bottom: 4px;">ELA-1: Naive Ingestion & Prompt Framing</h3>
+                <p style="font-size: 0.95rem; opacity: 0.85; line-height: 1.5;">
+                    The initial baseline prototype focused on direct prompt injection. Unstructured texts were packaged natively within static LLM context windows. While accurate for trivial datasets, this ran into severe scale thresholds and model hallucinations.
+                </p>
+            </div>
+
+            <div style="margin-bottom: 28px; position: relative;">
+                <div style="position: absolute; left: -26px; top: 4px; background: #4a5568; width: 10px; height: 10px; border-radius: 50%;"></div>
+                <h3 style="font-size: 1.1rem; margin-bottom: 4px;">ELA-2: Introduction of Semantic Embeddings</h3>
+                <p style="font-size: 0.95rem; opacity: 0.85; line-height: 1.5;">
+                    Integrated high-dimensional vector representations. By mapping paragraphs into continuous vector spaces using text embedding matrices, the system began matching content semantically rather than relying on exact word configurations.
+                </p>
+            </div>
+
+            <div style="margin-bottom: 28px; position: relative;">
+                <div style="position: absolute; left: -26px; top: 4px; background: #3182ce; width: 10px; height: 10px; border-radius: 50%;"></div>
+                <h3 style="font-size: 1.1rem; margin-bottom: 4px;">ELA-3: Vector Database Orchestration (Pinecone)</h3>
+                <p style="font-size: 0.95rem; opacity: 0.85; line-height: 1.5;">
+                    Introduced production storage scaling via Pinecone DB. Rubrics and evaluation assets were vectorized and indexed into distinct namespaces, enabling high-speed `Top-K` nearest neighbor semantic queries to assemble precise, context-aware prompt payloads dynamically.
+                </p>
+            </div>
+
+            <div style="margin-bottom: 12px; position: relative;">
+                <div style="position: absolute; left: -26px; top: 4px; background: #48bb78; width: 10px; height: 10px; border-radius: 50%;"></div>
+                <h3 style="font-size: 1.1rem; margin-bottom: 4px; color: #2f855a;">ELA-4: Asynchronous Parallel Execution & Strict Pydantic Controls</h3>
+                <p style="font-size: 0.95rem; opacity: 0.85; line-height: 1.5;">
+                    The current architecture iteration. Fully refactored to run concurrently using Python's native `async/await` ecosystem. All internal transformations are bound strictly to Pydantic type models to catch non-compliant JSON evaluation payloads instantly at the runtime barrier.
+                </p>
+            </div>
+
+        </div>
+    </section>
+
+    <section style="margin-bottom: 40px;">
+        <h2>Retrieval-Augmented Validation Pipeline</h2>
+        <p style="margin-bottom: 20px; line-height: 1.6;">
+            The core architecture isolates grading logic from network dependencies, utilizing Pinecone's metadata filtering to match specific text blocks against their exact rubric constraints.
+        </p>
+        
+        <div style="background: var(--card-bg, #f7fafc); border: 1px solid #e2e8f0; border-radius: 8px; padding: 24px; font-family: monospace; font-size: 0.9rem; line-height: 1.6;">
+            <span style="color: #4a5568;"># Conceptual Asynchronous Retrieval Pipeline (Python Engine)</span><br>
+            <span style="color: #b7791f;">async def</span> <span style="color: #2b6cb0;">evaluate_essay_stream</span>(payload: EssayPayload) -&gt; AssessmentSchema:<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;vector = <span style="color: #b7791f;">await</span> embedder.get_dense_matrix(payload.content)<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;contexts = <span style="color: #b7791f;">await</span> pinecone_index.query(vector=vector, top_k=3, namespace=<span style="color: #2f855a;">"rubrics"</span>)<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;validated_prompt = prompt_compiler.build(essay=payload, reference=contexts)<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;<span style="color: #4a5568;"># Yields deterministic structure via Pydantic model parsing</span><br>
+            &nbsp;&nbsp;&nbsp;&nbsp;<span style="color: #b7791f;">return</span> AssessmentSchema.model_validate(<span style="color: #b7791f;">await</span> llm.orchestrate(validated_prompt))
+        </div>
+    </section>
+
+    <section style="margin-bottom: 40px;">
+        <h2>R&D Performance Engineering Gains</h2>
+        <p style="margin-bottom: 16px; line-height: 1.6;">
+            By systematizing optimization metrics across the lifecycle, computational resource requirements dropped significantly while assessment consistency improved:
+        </p>
+        <table style="width: 100%; border-collapse: collapse; font-size: 0.95rem;">
+            <thead>
+                <tr style="border-bottom: 2px solid #e2e8f0; text-align: left;">
+                    <th style="padding: 12px 8px;">Pipeline Phase</th>
+                    <th style="padding: 12px 8px;">Context Strategy</th>
+                    <th style="padding: 12px 8px;">Mean Accuracy Latency</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr style="border-bottom: 1px solid #e2e8f0; opacity: 0.6;">
+                    <td style="padding: 12px 8px; font-weight: 600;">ELA-1 Base</td>
+                    <td style="padding: 12px 8px;">Naive Context Stacking</td>
+                    <td style="padding: 12px 8px; font-family: monospace;">~14.2s (High Token Wastage)</td>
+                </tr>
+                <tr style="border-bottom: 1px solid #e2e8f0; opacity: 0.8;">
+                    <td style="padding: 12px 8px; font-weight: 600;">ELA-2 Embeds</td>
+                    <td style="padding: 12px 8px;">In-Memory Matrix Lookups</td>
+                    <td style="padding: 12px 8px; font-family: monospace;">~8.5s</td>
+                </tr>
+                <tr style="border-bottom: 1px solid #e2e8f0;">
+                    <td style="padding: 12px 8px; font-weight: 600;">ELA-4 Production</td>
+                    <td style="padding: 12px 8px; color: #2f855a;">Async Vector Cache + Pinecone</td>
+                    <td style="padding: 12px 8px; font-weight: bold; font-family: monospace; color: #2f855a;">~2.1s (Highly Optimized)</td>
+                </tr>
+            </tbody>
+        </table>
+    </section>
+
+</article>
+{% endblock %}

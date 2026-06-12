@@ -1,40 +1,162 @@
 {% extends 'base.html' %}
 
-{% block title %}Home{% endblock %}
+{% block title %}Home - AI Engineer & Systems Architect{% endblock %}
 
 {% block content %}
     <section class="hero">
         <div class="left">
-            <h1>Hi, I'm a Software Developer</h1>
-            <p>I build full-stack web applications with Python, Node.js, React, and ReactNative. I also work on mobile Apps, AI-RAG System, and APIs.</p>
-            <div style="margin-top:18px">
-                <a class="btn" href="{{ url_for('main.portfolio') }}">View my projects</a>
+            <h1>Designing Intelligent Systems with Clean Architecture</h1>
+            <p>
+                Hi, I'm <strong>Isiakpona Chuks</strong>. I build production-grade AI-RAG systems, 
+                autonomous agentic orchestration engines, and robust full-stack applications. 
+                Moving beyond static data pipelines, I focus on engineering autonomous execution 
+                layers backed by reliable, clean backend design patterns.
+            </p>
+            
+            <div style="margin-top: 24px; display: flex; gap: 12px; flex-wrap: wrap;">
+                <a class="btn" href="{{ url_for('main.portfolio') }}">Explore My Systems</a>
+                <a class="btn btn-secondary" href="https://github.com/your-username" target="_blank" rel="noopener noreferrer" style="background-color: transparent; border: 1px solid var(--border-color, #ccc); color: inherit;">
+                    View Technical Notes
+                </a>
             </div>
-            <div style="margin-top:18px" class="badges">
-                <span class="badge">Python</span>
-                <span class="badge">React</span>
-                <span class="badge">Node.js</span>
-                <span class="badge">AI / ML</span>
-                 <span class="badge">ReactNative</span>
+            
+            <div style="margin-top: 32px;">
+                <h3 style="font-size: 0.9rem; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 8px; opacity: 0.8;">
+                    Core Specializations
+                </h3>
+                <div class="badges" style="margin-bottom: 16px;">
+                    <span class="badge">Python (FastAPI/Flask)</span>
+                    <span class="badge">Agentic Orchestration</span>
+                    <span class="badge">RAG Systems</span>
+                    <span class="badge">React / TypeScript</span>
+                    <span class="badge">React Native</span>
+                </div>
+
+                <h3 style="font-size: 0.9rem; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 8px; opacity: 0.8;">
+                    Architectural Paradigms
+                </h3>
+                <div class="badges">
+                    <span class="badge" style="background-color: #4a5568; color: #fff;">Domain-Driven Design (DDD)</span>
+                    <span class="badge" style="background-color: #4a5568; color: #fff;">Hexagonal Architecture</span>
+                    <span class="badge" style="background-color: #4a5568; color: #fff;">Pydantic Validation</span>
+                    <span class="badge" style="background-color: #4a5568; color: #fff;">Async Ecosystems</span>
+                </div>
             </div>
         </div>
+        
         <div class="right">
-            <!-- avatar image -->
-            <img class="avatar" src="{{ url_for('static', filename='images/profile.jpg') }}" alt="Profile avatar">
+            <img class="avatar" src="{{ url_for('static', filename='images/profile.jpg') }}" alt="Isiakpona Chuks - Profile Photo">
         </div>
     </section>
 
-    {% if country == "Nigeria" %}
-        <p style="margin-top:18px">Currency is NGN</p>
-    {% elif country == "usa" %}
-        <p style="margin-top:18px">Currency is USD</p>
-    {% else %}
-        <p style="margin-top:18px">Your default currency set to BTC!</p>
-    {% endif %}
+    <hr style="margin-top: 48px; border: 0; border-top: 1px solid rgba(0,0,0,0.1); opacity: 0.2;">
 
-    {% if source %}
-        <p style="margin-top:12px">Thanks for visiting through {{ source }}</p>
-    {% endif %}
+    <footer style="margin-top: 24px; font-size: 0.85rem; opacity: 0.75; display: flex; justify-content: space-between; flex-wrap: wrap; gap: 12px;">
+        <div>
+            {% if country == "Nigeria" %}
+                <span>Region: <strong>NGN</strong> Marketplace</span>
+            {% elif country == "usa" %}
+                <span>Region: <strong>USD</strong> Marketplace</span>
+            {% else %}
+                <span>Environment Asset Class: <strong>BTC</strong> (Default)</span>
+            {% endif %}
+        </div>
+
+        {% if source %}
+            <div>
+                <span>Inbound via: <em>{{ source }}</em></span>
+            </div>
+        {% endif %}
+    </footer>
+
+    <button id="agent-chat-toggle" class="agent-chat-fab" aria-label="Open AI Assistant">
+        <span>💬</span>
+    </button>
+
+    <div id="agent-chat-drawer" class="agent-chat-drawer" aria-hidden="true">
+        <div class="agent-drawer-header">
+            <h3>System Copilot</h3>
+            <button id="agent-drawer-close" aria-label="Close Assistant">✕</button>
+        </div>
+        
+        <div id="agent-chat-messages" class="agent-drawer-body">
+            <div class="message system-msg">
+                Hello! I am Chuks' Portfolio AI Assistant. Ask me anything about his technical stack, architecture patterns, or projects like MentorQA.
+            </div>
+        </div>
+        
+        <div class="agent-drawer-footer">
+            <input type="text" id="agent-user-input" placeholder="Ask about Chuks' stack..." autocomplete="off">
+            <button id="agent-send-btn">Send</button>
+        </div>
+    </div>
+
+    <script>
+    document.addEventListener("DOMContentLoaded", function() {
+        const chatFab = document.getElementById("agent-chat-toggle");
+        const chatDrawer = document.getElementById("agent-chat-drawer");
+        const closeBtn = document.getElementById("agent-drawer-close");
+        const sendBtn = document.getElementById("agent-send-btn");
+        const userInput = document.getElementById("agent-user-input");
+        const messagesContainer = document.getElementById("agent-chat-messages");
+
+        // Open Drawer
+        chatFab.addEventListener("click", () => {
+            chatDrawer.classList.add("open");
+            chatDrawer.setAttribute("aria-hidden", "false");
+            userInput.focus();
+        });
+
+        // Close Drawer
+        closeBtn.addEventListener("click", () => {
+            chatDrawer.classList.remove("open");
+            chatDrawer.setAttribute("aria-hidden", "true");
+        });
+
+        // Async Payload Delivery Dispatcher
+        async function sendMessage() {
+            const queryText = userInput.value.trim();
+            if (!queryText) return;
+
+            appendMessage(queryText, "user-msg");
+            userInput.value = "";
+
+            const loadingDiv = appendMessage("Thinking...", "system-msg");
+
+            try {
+                const response = await fetch("/api/agent/chat", {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({ message: queryText })
+                });
+
+                const data = await response.json();
+                loadingDiv.remove();
+
+                if (response.ok) {
+                    appendMessage(data.response, "system-msg");
+                } else {
+                    appendMessage(data.error || "Systems disruption encountered.", "system-msg");
+                }
+            } catch (error) {
+                loadingDiv.remove();
+                appendMessage("Unable to reach inference engine gateway.", "system-msg");
+            }
+        }
+
+        function appendMessage(text, className) {
+            const msgDiv = document.createElement("div");
+            msgDiv.className = `message ${className}`;
+            msgDiv.textContent = text;
+            messagesContainer.appendChild(msgDiv);
+            messagesContainer.scrollTop = messagesContainer.scrollHeight;
+            return msgDiv;
+        }
+
+        sendBtn.addEventListener("click", sendMessage);
+        userInput.addEventListener("keydown", function(e) {
+            if (e.key === "Enter") sendMessage();
+        });
+    });
+    </script>
 {% endblock %}
-
-

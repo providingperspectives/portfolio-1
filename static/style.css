@@ -103,3 +103,158 @@ footer{padding:28px 0;text-align:center;color:var(--muted);border-top:1px solid 
 .lightbox .close{background:transparent;border:0;color:var(--muted);font-size:22px;cursor:pointer}
 .thumb-wrap{cursor:pointer}
 
+/* ─── GLOBAL AI PORTFOLIO AGENT UI SPECIFICATIONS ───────────────────────── */
+
+/* Floating Action Button (FAB) */
+.agent-chat-fab {
+    position: fixed !important;
+    bottom: 30px !important;
+    right: 30px !important;
+    width: 60px !important;
+    height: 60px !important;
+    background: linear-gradient(135deg, var(--accent), var(--accent-2)) !important; /* Unified with your theme */
+    color: white !important;
+    border: none !important;
+    border-radius: 50% !important;
+    box-shadow: 0 8px 32px rgba(2, 6, 23, 0.5) !important;
+    cursor: pointer !important;
+    font-size: 26px !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    z-index: 9999 !important;
+    transition: transform 0.2s cubic-bezier(0.4, 0, 0.2, 1) !important;
+}
+
+.agent-chat-fab:hover {
+    transform: scale(1.08) translateY(-2px);
+}
+
+/* Sliding Drawer Panel Layout Context */
+.agent-chat-drawer {
+    position: fixed !important;
+    top: 0 !important;
+    right: -400px; /* Hidden off-screen by default */
+    width: 380px !important;
+    height: 100% !important;
+    background: #0b1220 !important; /* Aligned with your var(--card) deep navy theme */
+    border-left: 1px solid rgba(255, 255, 255, 0.08) !important;
+    box-shadow: -8px 0 32px rgba(2, 6, 23, 0.6) !important;
+    z-index: 10000 !important;
+    display: flex !important;
+    flex-direction: column !important;
+    transition: right 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+}
+
+/* Open Animation Toggle Matrix */
+.agent-chat-drawer.open {
+    right: 0 !important;
+}
+
+/* Inner Component Styling Layouts */
+.agent-drawer-header {
+    background: #071028 !important;
+    color: #e6eef8 !important;
+    padding: 18px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.agent-drawer-header h3 {
+    margin: 0;
+    font-family: 'Poppins', sans-serif;
+    font-size: 1.1rem;
+    font-weight: 600;
+}
+
+.agent-drawer-header button {
+    background: transparent;
+    border: none;
+    color: #94a3b8;
+    cursor: pointer;
+    font-size: 20px;
+    transition: color 0.18s;
+}
+
+.agent-drawer-header button:hover {
+    color: #e6eef8;
+}
+
+.agent-drawer-body {
+    flex: 1;
+    padding: 16px;
+    overflow-y: auto;
+    background: #071428 !important; /* Using your deep secondary background */
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+/* Conversational Message Stream Components */
+.message {
+    padding: 12px 14px;
+    border-radius: 12px;
+    max-width: 85%;
+    font-size: 14px;
+    line-height: 1.45;
+    font-family: 'Inter', sans-serif;
+}
+
+.system-msg {
+    background: rgba(255, 255, 255, 0.04) !important;
+    align-self: flex-start;
+    color: #e6eef8 !important; /* Force explicit clean readable text */
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    border-bottom-left-radius: 2px;
+}
+
+.user-msg {
+    background: linear-gradient(135deg, var(--accent), #6d28d9) !important;
+    align-self: flex-end;
+    color: white !important;
+    border-bottom-right-radius: 2px;
+    box-shadow: 0 4px 12px rgba(124, 58, 237, 0.15);
+}
+
+.agent-drawer-footer {
+    padding: 16px;
+    display: flex;
+    gap: 10px;
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+    background: #0b1220 !important;
+}
+
+#agent-user-input {
+    flex: 1;
+    padding: 12px;
+    background: rgba(255, 255, 255, 0.03) !important;
+    border: 1px solid rgba(255, 255, 255, 0.08) !important;
+    border-radius: 8px;
+    color: #e6eef8 !important; /* Prevents invisible text input bugs */
+    font-family: 'Inter', sans-serif;
+    font-size: 14px;
+    outline: none;
+    transition: border-color 0.18s;
+}
+
+#agent-user-input:focus {
+    border-color: var(--accent-2) !important;
+}
+
+#agent-send-btn {
+    background: linear-gradient(90deg, var(--accent), var(--accent-2)) !important;
+    color: white !important;
+    border: none;
+    padding: 0 18px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 600;
+    font-family: 'Inter', sans-serif;
+    transition: transform 0.18s;
+}
+
+#agent-send-btn:hover {
+    transform: translateY(-1px);
+}

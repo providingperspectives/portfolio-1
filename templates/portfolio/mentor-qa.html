@@ -1,0 +1,80 @@
+{% extends 'base.html' %}
+
+{% block title %}System Specs: MentorQA Engine{% endblock %}
+
+{% block content %}
+<article style="max-width: 900px; margin: 0 auto; padding: 24px 0;">
+    
+    <nav style="margin-bottom: 24px; font-size: 0.9rem;">
+        <a href="{{ url_for('main.portfolio') }}" style="text-decoration: none; color: #3182ce;">&larr; Back to Systems Portfolio</a>
+    </nav>
+
+    <header style="margin-bottom: 32px;">
+        <div style="display: inline-block; background: #feebc8; color: #c05621; font-size: 0.75rem; font-family: monospace; font-weight: 700; padding: 4px 8px; border-radius: 4px; margin-bottom: 12px; text-transform: uppercase; letter-spacing: 0.05em;">
+            Status: Pre-Production Pipeline / R&D Spec
+        </div>
+        <h1 style="font-size: 2.5rem; line-height: 1.1; margin-bottom: 12px;">MentorQA Evaluation Engine</h1>
+        <p style="font-size: 1.2rem; opacity: 0.8; line-height: 1.6;">
+            An automated interaction analysis architecture designed to ingest complex multi-party communication transcripts, process them through high-dimensional vector spaces, and evaluate performance indicators against rigid pedagogical matrices.
+        </p>
+    </header>
+
+    <hr style="border: 0; border-top: 1px solid rgba(0,0,0,0.1); margin: 32px 0;">
+
+    <section style="margin-bottom: 40px;">
+        <h2>Production Interface & Execution Cycle</h2>
+        <p style="margin-bottom: 24px; line-height: 1.6;">
+            The system bridges a decoupled frontend presentation layer with an event-driven serverless backend execution cluster. Below is a look at the live user workspace and processing states:
+        </p>
+
+        <div style="margin-bottom: 32px; border: 1px solid #e2e8f0; border-radius: 8px; padding: 16px; background: var(--card-bg, #fff);">
+            <h3 style="font-size: 1.1rem; margin-bottom: 12px; color: #2b6cb0;">01 / Distributed Evaluation Dashboard</h3>
+            <img src="{{ url_for('static', filename='images/mentorqa.png') }}" alt="MentorQA Dashboard Interface" style="width: 100%; border-radius: 6px; box-shadow: 0 4px 6px rgba(0,0,0,0.05); margin-bottom: 12px;">
+            <p style="font-size: 0.9rem; opacity: 0.85; line-height: 1.5;">
+                The primary management console groups non-deterministic transcript tracking sequences by unique hash references. Each scorecard component dynamically handles contextual interaction buckets.
+            </p>
+        </div>
+
+        <div style="margin-bottom: 32px; border: 1px solid #e2e8f0; border-radius: 8px; padding: 16px; background: var(--card-bg, #fff);">
+            <h3 style="font-size: 1.1rem; margin-bottom: 12px; color: #2b6cb0;">02 / Asynchronous Execution Layer</h3>
+            <img src="{{ url_for('static', filename='images/mentor-1.png') }}" alt="AI Evaluation Modal State" style="width: 100%; border-radius: 6px; box-shadow: 0 4px 6px rgba(0,0,0,0.05); margin-bottom: 12px;">
+            <p style="font-size: 0.9rem; opacity: 0.85; line-height: 1.5;">
+                Triggering an evaluation dispatches a payload to the backend API layer. The UI handles the long-running operational state gracefully with an intuitive tracking barrier while semantic embeddings resolve.
+            </p>
+        </div>
+
+        <div style="margin-bottom: 32px; border: 1px solid #e2e8f0; border-radius: 8px; padding: 16px; background: var(--card-bg, #fff);">
+            <h3 style="font-size: 1.1rem; margin-bottom: 12px; color: #2b6cb0;">03 / Structured Feedback & Scoring Matrix</h3>
+            <img src="{{ url_for('static', filename='images/mentor-2.png') }}" alt="AI Evaluation Summary View" style="width: 100%; border-radius: 6px; box-shadow: 0 4px 6px rgba(0,0,0,0.05); margin-bottom: 12px;">
+            <p style="font-size: 0.9rem; opacity: 0.85; line-height: 1.5;">
+                The completed execution view parses unstructured LLM assessment tokens into structured criteria scores alongside comparative modules contrasting human evaluator logs with automated models.
+            </p>
+        </div>
+    </section>
+
+    <section style="margin-bottom: 40px;">
+        <h2>Codebase Architecture Mapping</h2>
+        <p style="margin-bottom: 20px; line-height: 1.6;">
+            The workspace details absolute separation of concerns. The system isolates business entities away from delivery infrastructure interfaces completely.
+        </p>
+
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px; min-width: 300px;">
+            <div style="border: 1px solid #e2e8f0; border-radius: 8px; padding: 12px; background: #1a202c; color: #fff;">
+                <h4 style="margin-bottom: 8px; font-size: 0.9rem; color: #63b3ed; font-family: monospace;">Serverless API Infrastructure (Python)</h4>
+                <img src="{{ url_for('static', filename='images/mentor-3.png') }}" alt="FastAPI Backend Workspace" style="width: 100%; border-radius: 4px;">
+                <p style="font-size: 0.8rem; margin-top: 8px; opacity: 0.8;">
+                    <strong>Backend Cluster:</strong> Built via FastAPI context managers running inside an ASGI container architecture on Azure Functions. Clear domain and configuration separation ensures deterministic builds.
+                </p>
+            </div>
+            <div style="border: 1px solid #e2e8f0; border-radius: 8px; padding: 12px; background: #1a202c; color: #fff;">
+                <h4 style="margin-bottom: 8px; font-size: 0.9rem; color: #63b3ed; font-family: monospace;">Reactive View Presentation (Vite / React TSX)</h4>
+                <img src="{{ url_for('static', filename='images/mentor-4.png') }}" alt="React Frontend Workspace" style="width: 100%; border-radius: 4px;">
+                <p style="font-size: 0.8rem; margin-top: 8px; opacity: 0.8;">
+                    <strong>Frontend Stack:</strong> A strictly typed client layout executing build validations natively via Vite. Enforces rigid interface safety when drawing incoming data schemas.
+                </p>
+            </div>
+        </div>
+    </section>
+
+</article>
+{% endblock %}

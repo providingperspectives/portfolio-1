@@ -1,35 +1,84 @@
 {% extends 'base.html' %}
 
-{% block title %}Contact{% endblock %}
+{% block title %}Contact - Isiakpona Chuks{% endblock %}
 
 {% block content %}
-    <section style="padding:24px;background:transparent;border-radius:12px">
-        <h1>Let's Talk!</h1>
-        <p>I'm always open to discussing new projects or opportunities. Feel free to reach out!</p>
+<section style="max-width: 900px; margin: 0 auto; padding: 24px 0;">
+    
+    <header style="margin-bottom: 40px;">
+        <h1>Initiate a Technical Project</h1>
+        <p style="font-size: 1.1rem; opacity: 0.85; line-height: 1.6; max-width: 600px;">
+            Whether you are coordinating graduate research initiatives, looking to integrate autonomous RAG pipelines into enterprise environments, or seeking architectural advice on full-stack systems, let's connect.
+        </p>
+    </header>
 
-        {% if request.args.get('sent') == '1' %}
-            <div class="card" style="margin-top:12px;padding:12px;background:linear-gradient(180deg, rgba(255,255,255,0.02), transparent);">
-                <p>Thanks — your message was received. I'll get back to you soon.</p>
-            </div>
-        {% endif %}
+    <div style="display: flex; flex-direction: row; gap: 48px; flex-wrap: wrap; min-width: 280px;">
+        
+        <div style="flex: 1; min-width: 280px; margin-bottom: 24px;">
+            <h2 style="font-size: 1.4rem; margin-bottom: 16px;">Direct Avenues</h2>
+            <p style="line-height: 1.6; opacity: 0.85; margin-bottom: 24px;">
+                For immediate source inspection or direct professional network inquiries, please leverage my indexed channels:
+            </p>
 
-        <form action="{{ url_for('main.contact') }}" method="post" style="margin-top:18px;max-width:600px;display:flex;flex-direction:column;gap:12px">
-            <input type="text" name="name" placeholder="Your name" required style="padding:10px;border-radius:8px;border:1px solid rgba(255,255,255,0.04);background:transparent;color:var(--text)">
-            <input type="email" name="email" placeholder="Your email" required style="padding:10px;border-radius:8px;border:1px solid rgba(255,255,255,0.04);background:transparent;color:var(--text)">
-            <textarea name="message" placeholder="Message" rows="6" required style="padding:10px;border-radius:8px;border:1px solid rgba(255,255,255,0.04);background:transparent;color:var(--text)"></textarea>
-            <button class="btn" type="submit">Send message</button>
-        </form>
-
-        <div style="margin-top:18px;display:flex;flex-direction:column;gap:10px;max-width:480px">
-            <div class="card">
-                <p><strong>Email:</strong> <a href="mailto:juliusrlnd@gmail.com">juliusrlnd@gmail.com</a></p>
-            </div>
-            <div class="card">
-                <p><strong>LinkedIn:</strong> <a href="https://www.linkedin.com/in/isiakpona-chuks-14b93235" target="_blank">Profile</a></p>
-            </div>
-            <div class="card">
-                <p><strong>Github:</strong> <a href="https://github.com/providingperspectives" target="_blank">Github Projects</a></p>
-            </div>
+            <ul style="list-style: none; padding: 0; margin: 0; font-size: 1rem; line-height: 2.2;">
+                <li>
+                    <strong>GitHub:</strong> 
+                    <a href="https://github.com/isiakponachuks" target="_blank" rel="noopener noreferrer" style="color: #3182ce; text-decoration: none;">
+                        github.com/isiakponachuks &rarr;
+                    </a>
+                </li>
+                <li>
+                    <strong>LinkedIn:</strong> 
+                    <a href="https://linkedin.com/in/isiakpona-chuks-14b93235" target="_blank" rel="noopener noreferrer" style="color: #3182ce; text-decoration: none;">
+                        linkedin.com/in/isiakpona-chuks-14b93235 &rarr;
+                    </a>
+                </li>
+                <li>
+                    <strong>Location:</strong> Port Harcourt, Rivers, Nigeria
+                </li>
+            </ul>
         </div>
-    </section>
+
+        <div style="flex: 1.5; min-width: 320px; background: #1a202c; color: #ffffff; border: 1px solid #2d3748; border-radius: 12px; padding: 32px; box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);">
+            
+            {% if request.args.get('sent') %}
+                <div style="background: #48bb78; color: #fff; border-radius: 6px; padding: 16px; margin-bottom: 24px; font-size: 0.95rem; font-weight: 600;">
+                    ✓ Transmission Successful. Your system payload has been registered and logged server-side.
+                </div>
+            {% endif %}
+
+            <h2 style="font-size: 1.5rem; margin-bottom: 24px; margin-top: 0; color: #ffffff; font-weight: 700; border-bottom: 1px solid #2d3748; padding-bottom: 12px;">
+                Submit Specifications
+            </h2>
+            
+            <form action="{{ url_for('main.contact') }}" method="POST" style="display: flex; flex-direction: column; gap: 20px;">
+                
+                <div>
+                    <label for="name" style="display: block; font-size: 0.85rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 8px; color: #a0aec0;">
+                        Identification / Name
+                    </label>
+                    <input type="text" id="name" name="name" required placeholder="Alex Mercer" style="width: 100%; padding: 12px; border: 1px solid #4a5568; border-radius: 6px; box-sizing: border-box; font-size: 1rem; background: #2d3748; color: #ffffff; outline: none; transition: border-color 0.2s;">
+                </div>
+
+                <div>
+                    <label for="email" style="display: block; font-size: 0.85rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 8px; color: #a0aec0;">
+                        Return Routing / Email
+                    </label>
+                    <input type="email" id="email" name="email" required placeholder="alex@enterprise.com" style="width: 100%; padding: 12px; border: 1px solid #4a5568; border-radius: 6px; box-sizing: border-box; font-size: 1rem; background: #2d3748; color: #ffffff; outline: none; transition: border-color 0.2s;">
+                </div>
+
+                <div>
+                    <label for="message" style="display: block; font-size: 0.85rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 8px; color: #a0aec0;">
+                        Project Scope / Message
+                    </label>
+                    <textarea id="message" name="message" required rows="5" placeholder="Detail your system performance targets or evaluation constraints..." style="width: 100%; padding: 12px; border: 1px solid #4a5568; border-radius: 6px; box-sizing: border-box; font-size: 1rem; font-family: inherit; resize: vertical; background: #2d3748; color: #ffffff; outline: none; transition: border-color 0.2s;"></textarea>
+                </div>
+
+                <button type="submit" class="btn" style="width: 100%; padding: 14px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; border: none; cursor: pointer; background: #3182ce; color: #ffffff; border-radius: 6px; transition: background 0.2s;">
+                    Dispatch Scope Payload
+                </button>
+
+            </form>
+        </div>
+</section>
 {% endblock %}
