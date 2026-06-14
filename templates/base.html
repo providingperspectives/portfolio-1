@@ -9,7 +9,7 @@
     <link rel="icon" href="{{ url_for('static', filename='images/favicon.svg') }}" type="image/svg+xml">
     <link rel="shortcut icon" href="{{ url_for('static', filename='images/favicon.svg') }}" type="image/x-icon">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Poppins:wght@400;600&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+   <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}?v=1.1">
 </head>
 <body>
     <header>
@@ -36,7 +36,7 @@
         </div>
     </main>    
     <footer>
-        <p>&copy; 2024 - Isiakpona's Portfolio</p>
+        <p>&copy; 2026 - Isiakpona's Portfolio</p>
     </footer>
     <script>
         const hamburger = document.getElementById('hamburger');
@@ -152,7 +152,20 @@
                 chatDrawer.setAttribute("aria-hidden", "false");
                 if (userInput) userInput.focus();
             });
-        }
+        }// Locate your existing chatFab listener block and update it to look like this:
+if (chatFab && chatDrawer) {
+    // Open Drawer
+    chatFab.addEventListener("click", (e) => {
+        // 1. PROFESSIONAL GUARD: Stop the click from bubbling up to layout containers
+        e.stopPropagation(); 
+        
+        // 2. Open the UI drawer component
+        chatDrawer.classList.add("open");
+        chatDrawer.setAttribute("aria-hidden", "false");
+        
+        if (userInput) userInput.focus();
+    });
+}
 
         if (closeBtn && chatDrawer) {
             // Close Drawer

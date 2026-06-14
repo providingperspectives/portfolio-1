@@ -258,3 +258,40 @@ footer{padding:28px 0;text-align:center;color:var(--muted);border-top:1px solid 
 #agent-send-btn:hover {
     transform: translateY(-1px);
 }
+
+/* ==========================================================================
+   PRODUCTION FIX: Absolute Structural Isolation for Profile vs Chat FAB
+   ========================================================================== */
+
+/* 1. Force the chat button to the undisputed top layer of the screen */
+.agent-chat-fab {
+    position: fixed !important;
+    bottom: 30px !important;
+    right: 30px !important;
+    z-index: 9999999 !important; /* Maximum possible stacking index */
+    cursor: pointer !important;
+    pointer-events: auto !important; /* Forces the browser to pass clicks to JS */
+}
+
+/* 2. Isolate the sliding drawer context */
+.agent-chat-drawer {
+    position: fixed !important;
+    z-index: 10000000 !important;
+}
+
+/* 3. Tame the Hero / Right Avatar column so it cannot stretch out invisible boxes */
+.hero, 
+.hero .right, 
+.hero .right .avatar {
+    position: relative !important;
+    z-index: 1 !important; /* Drops it below the chat UI layer */
+    max-width: 100% !important;
+}
+
+/* 4. DEFENSIVE OVERRIDE: Prevent the avatar container from stretching across the screen */
+.hero .right {
+    display: inline-block !important; /* Shrink wraps the element tightly around the image */
+    height: auto !important;
+    width: auto !important;
+    overflow: visible !important;
+}
