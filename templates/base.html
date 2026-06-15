@@ -41,7 +41,7 @@
     </footer>
 
    <script>
-    
+
         document.addEventListener("DOMContentLoaded", function() {
             const hamburger = document.getElementById('hamburger');
             const navMenu = document.getElementById('nav-menu');
@@ -160,6 +160,19 @@
     </div>
 
     <script>
+        
+        // Inside the DOMContentLoaded block in templates/base.html
+const heroTrigger = document.getElementById("hero-copilot-trigger");
+const chatFab = document.getElementById("agent-chat-toggle");
+
+if (heroTrigger && chatFab) {
+    heroTrigger.addEventListener("click", function(e) {
+        e.preventDefault(); // Stop the page from jumping to a hash anchor
+        chatFab.click();    // Triggers the drawer slider logic already built into base.html
+    });
+}
+
+
     document.addEventListener("DOMContentLoaded", function() {
         // Variables declared cleanly exactly ONCE
         const chatFab = document.getElementById("agent-chat-toggle");
