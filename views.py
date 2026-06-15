@@ -72,7 +72,7 @@ def portfolio():
         {
             'name': 'English Language Assessment Series', 
             'description': 'Iterative NLP grading architectures (ELA-1 through ELA-4) utilizing dense semantic embedding matching and vector storage pipelines for automated contextual rubric execution.', 
-            'endpoint': 'ela-system', 
+            'endpoint': 'grader-function', 
             'image': 'grader_system.svg',
             'stack': ['Python Async', 'Pinecone DB', 'Pydantic', 'Flask'],
             'architecture': 'Domain-Driven Design'
@@ -91,7 +91,7 @@ def portfolio():
 @main.route("/portfolio/<project>")
 def project(project):
     # Route mappings matching your elite architectural endpoints
-    valid_projects = ["mentor-qa", "grader-system", "multiplan-agro"]
+    valid_projects = ["mentor-qa", "grader-function", "multiplan-agro"]
     if project in valid_projects:
         return render_template(f"portfolio/{project}.html")
     return redirect(url_for("main.not_found_404"))
@@ -107,7 +107,7 @@ def portfolio_json():
             "vector_store": "pinecone",
             "status": "active"
         },
-        "grader-system": {
+        "grader-function": {
             "language": "python",
             "validation": "pydantic",
             "vector_store": "pinecone",
