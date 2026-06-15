@@ -69,6 +69,87 @@ nav::before{content:"";position:absolute;inset:0;background:linear-gradient(90de
 .card p{color:var(--muted);font-size:15px}
 .card:hover{transform:translateY(-6px)}
 
+/* Update your card layout definitions to ensure readable contrast */
+.card {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    border: 1px solid rgba(255, 255, 255, 0.1) !important; /* Soft border for dark theme */
+    border-radius: 12px;
+    padding: 16px;
+    
+    /* FIX: Force a dark card surface so white text remains perfectly legible */
+    background: #111827 !important; 
+    color: #f3f4f6 !important;
+    
+    transition: transform 0.2s, box-shadow 0.2s;
+}/* Update your main card layout to handle clean state changes */
+.card {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    border: 1px solid rgba(255, 255, 255, 0.08) !important;
+    border-radius: 12px;
+    padding: 16px;
+    background: #111827 !important;
+    color: #f3f4f6 !important;
+    
+    /* Hardware acceleration layer configuration */
+    will-change: transform, box-shadow;
+    
+    /* Cubic-bezier curve gives a snappy, custom spring feel instead of a linear fade */
+    transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1), 
+                box-shadow 0.25s cubic-bezier(0.4, 0, 0.2, 1),
+                border-color 0.25s ease;
+}
+
+/* Hover effects for an immersive grid interaction */
+.card:hover {
+    /* Slight 4px upward translation for depth */
+    transform: translateY(-4px); 
+    
+    /* A soft, deep shadow that matches your dark background color palette */
+    box-shadow: 0 12px 24px -10px rgba(0, 0, 0, 0.6), 
+                0 4px 12px -5px rgba(49, 130, 206, 0.15); /* Subtly tinted with your primary blue button color */
+    
+    /* Brighten the border edge on hover to guide the user's eye */
+    border-color: rgba(49, 130, 206, 0.4) !important;
+}
+
+/* Elevate the thumbnail images when hovering over the card */
+.card:hover .project-thumb {
+    /* Gives a subtle 3% scaling effect inside the cropped wrap border */
+    transform: scale(1.03);
+}
+
+/* Ensure the thumbnail image scales smoothly around its center anchor */
+.project-thumb {
+    width: 100%;
+    height: 180px;
+    object-fit: cover;
+    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    transform-origin: center center;
+}
+
+/* Make sure descriptions stand out gracefully */
+.card p {
+    color: #9ca3af !important; /* Soft gray for description layer */
+}
+
+/* Style link anchors to remain visible */
+.card h3 a {
+    color: #ffffff !important;
+}
+
+/* Ensure the thumbnail wrapper handles broken image outlines elegantly */
+.thumb-wrap {
+    background: #1f2937; /* Dark placeholder space */
+    min-height: 180px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
 /* Footer */
 footer{padding:28px 0;text-align:center;color:var(--muted);border-top:1px solid rgba(255,255,255,0.03);margin-top:60px}
 
@@ -105,14 +186,14 @@ footer{padding:28px 0;text-align:center;color:var(--muted);border-top:1px solid 
 
 /* ─── GLOBAL AI PORTFOLIO AGENT UI SPECIFICATIONS ───────────────────────── */
 
-/* Floating Action Button (FAB) */
+/* 1. Floating Action Button (FAB) - Ultimate Priority Viewport Layer */
 .agent-chat-fab {
     position: fixed !important;
     bottom: 30px !important;
     right: 30px !important;
     width: 60px !important;
     height: 60px !important;
-    background: linear-gradient(135deg, var(--accent), var(--accent-2)) !important; /* Unified with your theme */
+    background: linear-gradient(135deg, var(--accent), var(--accent-2)) !important;
     color: white !important;
     border: none !important;
     border-radius: 50% !important;
@@ -122,25 +203,26 @@ footer{padding:28px 0;text-align:center;color:var(--muted);border-top:1px solid 
     display: flex !important;
     align-items: center !important;
     justify-content: center !important;
-    z-index: 9999 !important;
+    z-index: 2147483647 !important; /* Maximum safe 32-bit integer z-index */
+    pointer-events: auto !important;  /* Forces browser to register clicks directly */
     transition: transform 0.2s cubic-bezier(0.4, 0, 0.2, 1) !important;
 }
 
 .agent-chat-fab:hover {
-    transform: scale(1.08) translateY(-2px);
+    transform: scale(1.08) translateY(-2px) !important;
 }
 
-/* Sliding Drawer Panel Layout Context */
+/* 2. Sliding Drawer Panel Layout Context */
 .agent-chat-drawer {
     position: fixed !important;
     top: 0 !important;
     right: -400px; /* Hidden off-screen by default */
     width: 380px !important;
     height: 100% !important;
-    background: #0b1220 !important; /* Aligned with your var(--card) deep navy theme */
+    background: #0b1220 !important; /* var(--card) deep navy theme */
     border-left: 1px solid rgba(255, 255, 255, 0.08) !important;
     box-shadow: -8px 0 32px rgba(2, 6, 23, 0.6) !important;
-    z-index: 10000 !important;
+    z-index: 2147483646 !important; /* Exactly one layer below the trigger FAB */
     display: flex !important;
     flex-direction: column !important;
     transition: right 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
@@ -186,7 +268,7 @@ footer{padding:28px 0;text-align:center;color:var(--muted);border-top:1px solid 
     flex: 1;
     padding: 16px;
     overflow-y: auto;
-    background: #071428 !important; /* Using your deep secondary background */
+    background: #071428 !important;
     display: flex;
     flex-direction: column;
     gap: 12px;
@@ -205,7 +287,7 @@ footer{padding:28px 0;text-align:center;color:var(--muted);border-top:1px solid 
 .system-msg {
     background: rgba(255, 255, 255, 0.04) !important;
     align-self: flex-start;
-    color: #e6eef8 !important; /* Force explicit clean readable text */
+    color: #e6eef8 !important;
     border: 1px solid rgba(255, 255, 255, 0.06);
     border-bottom-left-radius: 2px;
 }
@@ -232,7 +314,7 @@ footer{padding:28px 0;text-align:center;color:var(--muted);border-top:1px solid 
     background: rgba(255, 255, 255, 0.03) !important;
     border: 1px solid rgba(255, 255, 255, 0.08) !important;
     border-radius: 8px;
-    color: #e6eef8 !important; /* Prevents invisible text input bugs */
+    color: #e6eef8 !important;
     font-family: 'Inter', sans-serif;
     font-size: 14px;
     outline: none;
@@ -259,39 +341,61 @@ footer{padding:28px 0;text-align:center;color:var(--muted);border-top:1px solid 
     transform: translateY(-1px);
 }
 
-/* ==========================================================================
-   PRODUCTION FIX: Absolute Structural Isolation for Profile vs Chat FAB
-   ========================================================================== */
-
-/* 1. Force the chat button to the undisputed top layer of the screen */
-.agent-chat-fab {
-    position: fixed !important;
-    bottom: 30px !important;
-    right: 30px !important;
-    z-index: 9999999 !important; /* Maximum possible stacking index */
-    cursor: pointer !important;
-    pointer-events: auto !important; /* Forces the browser to pass clicks to JS */
-}
-
-/* 2. Isolate the sliding drawer context */
-.agent-chat-drawer {
-    position: fixed !important;
-    z-index: 10000000 !important;
-}
-
-/* 3. Tame the Hero / Right Avatar column so it cannot stretch out invisible boxes */
+/* 3. DEFENSIVE BOUNDARY MECHANICS: Guard Main Layout Sections From Stretching */
 .hero, 
 .hero .right, 
-.hero .right .avatar {
-    position: relative !important;
-    z-index: 1 !important; /* Drops it below the chat UI layer */
-    max-width: 100% !important;
+.hero .right .avatar,
+header,
+nav,
+.container {
+    position: relative;
+    z-index: 50 !important; /* Explicit layer keeping portfolio layout well below chat UI */
 }
 
-/* 4. DEFENSIVE OVERRIDE: Prevent the avatar container from stretching across the screen */
 .hero .right {
-    display: inline-block !important; /* Shrink wraps the element tightly around the image */
+    display: inline-block !important; /* Collapses parent layout block snugly to avatar boundaries */
     height: auto !important;
     width: auto !important;
     overflow: visible !important;
+}
+
+/* ==========================================================================
+   MOBILE MEDIA QUERY CONSTRAINTS (COLLISION PREVENTION)
+   ========================================================================== */
+@media (max-width:600px) {
+    /* Allow the nav dropdown to overflow outward safely without breaking page stacking layers */
+    nav { 
+        overflow: visible !important; 
+        z-index: 100 !important; 
+    }
+    
+    .hamburger { 
+        display: block !important;
+        position: relative !important;
+        z-index: 101 !important; 
+    }
+    
+    #nav-menu {
+        position: absolute !important;
+        right: 0 !important;
+        top: calc(100% + 10px) !important;
+        left: 0 !important;
+        width: 100% !important;
+        display: flex !important;
+        flex-direction: column !important;
+        background: rgba(11, 18, 32, 0.98) !important;
+        z-index: 99 !important;
+        
+        /* Smooth state transition handling matrix */
+        opacity: 0 !important;
+        pointer-events: none !important;
+        transform: translateY(-10px) !important;
+        transition: opacity 0.2s ease, transform 0.2s ease !important;
+    }
+    
+    #nav-menu.active {
+        opacity: 1 !important;
+        pointer-events: auto !important;
+        transform: translateY(0) !important;
+    }
 }

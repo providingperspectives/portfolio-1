@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 450" width="100%" height="100%">
+    <rect width="100%" height="100%" fill="#061911"/>
+    
+    <path d="M0,350 Q200,200 400,300 T800,200 L800,450 L0,450 Z" fill="#0b2e1e" opacity="0.6"/>
+    <path d="M0,280 Q300,400 500,250 T800,380 L800,450 L0,450 Z" fill="#12462f" opacity="0.4"/>
+
+    <rect x="100" y="100" width="600" height="250" rx="8" fill="#141b1e" stroke="#2f855a" stroke-width="2" fill-opacity="0.9"/>
+    
+    <rect x="100" y="100" width="600" height="40" rx="8" fill="#1c262b"/>
+    <circle cx="125" cy="120" r="5" fill="#e53e3e"/>
+    <circle cx="140" cy="120" r="5" fill="#ecc94b"/>
+    <circle cx="155" cy="120" r="5" fill="#38a169"/>
+    <text x="400" y="125" fill="#9bc4b1" font-family="monospace" font-size="12" text-anchor="middle">multiplan-agribusiness-hub // Operational Node</text>
+
+    <rect x="140" y="170" width="150" height="140" rx="4" fill="#1c262b" stroke="#38a169" stroke-width="1"/>
+    <text x="215" y="230" fill="#e6fffa" font-family="sans-serif" font-size="14" text-anchor="middle" font-weight="bold">Supply Monitor</text>
+    <text x="215" y="255" fill="#48bb78" font-family="monospace" font-size="12" text-anchor="middle">ONLINE [200]</text>
+
+    <rect x="325" y="170" width="150" height="140" rx="4" fill="#1c262b" stroke="#38a169" stroke-width="1"/>
+    <text x="400" y="230" fill="#e6fffa" font-family="sans-serif" font-size="14" text-anchor="middle" font-weight="bold">Data Validation</text>
+    <text x="400" y="255" fill="#48bb78" font-family="monospace" font-size="12" text-anchor="middle">SECURE (DNS)</text>
+
+    <rect x="510" y="170" width="150" height="140" rx="4" fill="#1c262b" stroke="#38a169" stroke-width="1"/>
+    <text x="585" y="230" fill="#e6fffa" font-family="sans-serif" font-size="14" text-anchor="middle" font-weight="bold">Gallery Pipeline</text>
+    <text x="585" y="255" fill="#48bb78" font-family="monospace" font-size="12" text-anchor="middle">OPTIMIZED</text>
+</svg>

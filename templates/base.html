@@ -9,9 +9,8 @@
     <link rel="icon" href="{{ url_for('static', filename='images/favicon.svg') }}" type="image/svg+xml">
     <link rel="shortcut icon" href="{{ url_for('static', filename='images/favicon.svg') }}" type="image/x-icon">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Poppins:wght@400;600&display=swap" rel="stylesheet">
-   <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}?v=1.1">
-</head>
-<body>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}?v=2.0">
+</head> <body>
     <header>
         <div class="container">
             <nav>
@@ -30,58 +29,84 @@
             </nav>
         </div>
     </header>
+
     <main>
         <div class="container">
             {% block content %}{% endblock %}
         </div>
     </main>    
+
     <footer>
         <p>&copy; 2026 - Isiakpona's Portfolio</p>
     </footer>
-    <script>
-        const hamburger = document.getElementById('hamburger');
-        const navMenu = document.getElementById('nav-menu');
 
-        if (hamburger) {
-            hamburger.addEventListener('click', function() {
-                hamburger.classList.toggle('active');
-                navMenu.classList.toggle('active');
+   <script>
+    
+        document.addEventListener("DOMContentLoaded", function() {
+            const hamburger = document.getElementById('hamburger');
+            const navMenu = document.getElementById('nav-menu');
+
+            // 1. MOBILE HAMBURGER TOGGLE CONTEXT
+            if (hamburger && navMenu) {
+                hamburger.addEventListener('click', function(e) {
+                    e.stopPropagation(); // Freezes event so global click handlers don't immediately clear it
+                    hamburger.classList.toggle('active');
+                    navMenu.classList.toggle('active');
+                });
+            }
+
+            // 2. DISMISS NAVIGATION IF USER CLICKS ELSEWHERE ON SITE
+            document.addEventListener('click', function(e) {
+                if (navMenu && navMenu.classList.contains('active')) {
+                    if (!navMenu.contains(e.target) && e.target !== hamburger) {
+                        hamburger.classList.remove('active');
+                        navMenu.classList.remove('active');
+                    }
+                }
             });
-        }
 
-        // Close menu when clicking on a link
-        document.querySelectorAll('#nav-menu li a').forEach(link => {
-            link.addEventListener('click', function() {
-                if (hamburger) hamburger.classList.remove('active');
-                navMenu.classList.remove('active');
+            // 3. COLLAPSE NAVIGATION WHEN SELECTING AN ACTIVE LINK
+            document.querySelectorAll('#nav-menu li a').forEach(link => {
+                link.addEventListener('click', function() {
+                    if (hamburger) hamburger.classList.remove('active');
+                    if (navMenu) navMenu.classList.remove('active');
+                });
             });
         });
 
-        // Lightbox / project preview
+        // 4. LIGHTBOX / PREVIEW GRAPH PARSER
         function openLightbox(src, title, desc, endpoint){
             const lb = document.getElementById('lightbox');
+            if (!lb) return;
+            
             lb.querySelector('img').src = src;
             lb.querySelector('.info h3').textContent = title;
             lb.querySelector('.info p').textContent = desc;
-            lb.querySelector('.view-link').href = '/portfolio/' + endpoint;
+            lb.querySelector('.view-link').href = '{{ url_for("main.portfolio") }}/' + endpoint;
+            
             lb.classList.add('open');
             lb.setAttribute('aria-hidden','false');
             lb.querySelector('.close').focus();
         }
+        
         function closeLightbox(){
             const lb = document.getElementById('lightbox');
-            lb.classList.remove('open');
-            lb.setAttribute('aria-hidden','true');
+            if (lb) {
+                lb.classList.remove('open');
+                lb.setAttribute('aria-hidden','true');
+            }
         }
 
+        // 5. DELEGATED EVENT CAPTURE FOR PROJECT CARDS
         document.addEventListener('click', function(e){
             const thumb = e.target.closest('.thumb-wrap');
             if(thumb){
                 const img = thumb.querySelector('img');
-                const src = img.src;
+                const src = img ? img.src : '';
                 const title = thumb.dataset.title || '';
                 const desc = thumb.dataset.desc || '';
                 const endpoint = thumb.dataset.endpoint || '';
+                
                 e.preventDefault();
                 openLightbox(src, title, desc, endpoint);
             }
@@ -96,7 +121,6 @@
         });
     </script>
 
-    <!-- Lightbox markup -->
     <div id="lightbox" class="lightbox" role="dialog" aria-hidden="true">
         <div class="panel">
             <button class="close" aria-label="Close">✕</button>
@@ -137,6 +161,7 @@
 
     <script>
     document.addEventListener("DOMContentLoaded", function() {
+        // Variables declared cleanly exactly ONCE
         const chatFab = document.getElementById("agent-chat-toggle");
         const chatDrawer = document.getElementById("agent-chat-drawer");
         const closeBtn = document.getElementById("agent-drawer-close");
@@ -144,32 +169,23 @@
         const userInput = document.getElementById("agent-user-input");
         const messagesContainer = document.getElementById("agent-chat-messages");
 
-        // Make sure elements exist before binding listeners
+        // Single Unified Action Trigger Handler with Strong Event Walls
         if (chatFab && chatDrawer) {
-            // Open Drawer
-            chatFab.addEventListener("click", () => {
+            chatFab.addEventListener("click", function(e) {
+                e.stopPropagation(); // Stops event cascading completely
+                e.preventDefault();  // Cancels browser-level layout recalculation
+                
                 chatDrawer.classList.add("open");
                 chatDrawer.setAttribute("aria-hidden", "false");
+                
                 if (userInput) userInput.focus();
+                console.log("Chat drawer opened smoothly with bubble blocks active.");
             });
-        }// Locate your existing chatFab listener block and update it to look like this:
-if (chatFab && chatDrawer) {
-    // Open Drawer
-    chatFab.addEventListener("click", (e) => {
-        // 1. PROFESSIONAL GUARD: Stop the click from bubbling up to layout containers
-        e.stopPropagation(); 
-        
-        // 2. Open the UI drawer component
-        chatDrawer.classList.add("open");
-        chatDrawer.setAttribute("aria-hidden", "false");
-        
-        if (userInput) userInput.focus();
-    });
-}
+        }
 
         if (closeBtn && chatDrawer) {
-            // Close Drawer
-            closeBtn.addEventListener("click", () => {
+            closeBtn.addEventListener("click", function(e) {
+                e.stopPropagation();
                 chatDrawer.classList.remove("open");
                 chatDrawer.setAttribute("aria-hidden", "true");
             });

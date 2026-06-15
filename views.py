@@ -65,7 +65,7 @@ def portfolio():
             'name': 'MentorQA Evaluation Engine', 
             'description': 'An automated interaction analysis pipeline leveraging Retrieval-Augmented Generation (RAG) models to evaluate transcripts against strict professional quality matrices.', 
             'endpoint': 'mentor-qa', 
-            'image': 'mentorqa.jpg',
+            'image': 'mentor-qa.svg',
             'stack': ['FastAPI', 'Azure OpenAI', 'Pinecone', 'React TSX'],
             'architecture': 'Hexagonal Pattern'
         },
@@ -73,7 +73,7 @@ def portfolio():
             'name': 'English Language Assessment Series', 
             'description': 'Iterative NLP grading architectures (ELA-1 through ELA-4) utilizing dense semantic embedding matching and vector storage pipelines for automated contextual rubric execution.', 
             'endpoint': 'ela-system', 
-            'image': 'elasystem.jpg',
+            'image': 'grader_system.svg',
             'stack': ['Python Async', 'Pinecone DB', 'Pydantic', 'Flask'],
             'architecture': 'Domain-Driven Design'
         },
@@ -81,7 +81,7 @@ def portfolio():
             'name': 'Multiplan Agribusiness Hub', 
             'description': 'Full-stack operational infrastructure designed for Multiplan Agro-Culture Farms, combining automated client workflows with rigorous data validation rules.', 
             'endpoint': 'multiplan-agro', 
-            'image': 'multiplan.jpg',
+            'image': 'multiplan.svg',
             'stack': ['React', 'Python', 'DNS SEC', 'SQL'],
             'architecture': 'Clean Monolith'
         }
@@ -91,7 +91,7 @@ def portfolio():
 @main.route("/portfolio/<project>")
 def project(project):
     # Route mappings matching your elite architectural endpoints
-    valid_projects = ["mentor-qa", "ela-system", "multiplan-agro"]
+    valid_projects = ["mentor-qa", "grader-system", "multiplan-agro"]
     if project in valid_projects:
         return render_template(f"portfolio/{project}.html")
     return redirect(url_for("main.not_found_404"))
@@ -107,7 +107,7 @@ def portfolio_json():
             "vector_store": "pinecone",
             "status": "active"
         },
-        "ela-system": {
+        "grader-system": {
             "language": "python",
             "validation": "pydantic",
             "vector_store": "pinecone",
