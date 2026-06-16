@@ -3,69 +3,61 @@
 {% block title %}Home - AI Engineer & Systems Architect{% endblock %}
 
 {% block content %}
-    <section class="hero">
-        <div class="left">
-            <h1>Designing Intelligent Systems with Clean Architecture</h1>
-            <p>
-                Hi, I'm <strong>Isiakpona Chuks</strong>. I build production-grade AI-RAG systems, 
-                autonomous agentic orchestration engines, and robust full-stack applications. 
-                Moving beyond static data pipelines, I focus on engineering autonomous execution 
-                layers backed by reliable, clean backend design patterns.
-            </p>
-            
-            <div style="margin-top: 24px; display: flex; gap: 12px; flex-wrap: wrap;">
-                <a class="btn" href="{{ url_for('main.portfolio') }}">Explore My Systems</a>
-               <a id="hero-copilot-trigger" class="btn btn-secondary" href="#chat" style="background-color: transparent; border: 1px solid var(--border-color, #ccc); color: inherit;">
-        Consult System Copilot
-    </a>
-            </div>
-            
-            <div style="margin-top: 32px;">
-                <h3 style="font-size: 0.9rem; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 8px; opacity: 0.8;">
-                    Core Specializations
-                </h3>
-                <div class="badges" style="margin-bottom: 16px;">
-                    <span class="badge">Python (FastAPI/Flask)</span>
-                    <span class="badge">Agentic Orchestration</span>
-                    <span class="badge">RAG Systems</span>
-                    <span class="badge">React / TypeScript</span>
-                    <span class="badge">React Native</span>
-                </div>
-
-                <h3 style="font-size: 0.9rem; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 8px; opacity: 0.8;">
-                    Architectural Paradigms
-                </h3>
-                <div class="badges">
-                    <span class="badge" style="background-color: #4a5568; color: #fff;">Domain-Driven Design (DDD)</span>
-                    <span class="badge" style="background-color: #4a5568; color: #fff;">Hexagonal Architecture</span>
-                    <span class="badge" style="background-color: #4a5568; color: #fff;">Pydantic Validation</span>
-                    <span class="badge" style="background-color: #4a5568; color: #fff;">Async Ecosystems</span>
-                </div>
-            </div>
-        </div>
+<main style="min-height: 80vh; display: flex; flex-direction: column; justify-content: center; padding: 40px 0;">
+    
+    <header class="hero-section" style="max-width: 850px; margin-bottom: 56px;">
+        <span style="font-family: monospace; font-size: 0.9rem; color: #3182ce; font-weight: bold; letter-spacing: 2px; text-transform: uppercase; background: rgba(49, 130, 206, 0.1); padding: 6px 12px; border-radius: 4px;">
+            Core Engine Domain Initialized
+        </span>
         
-        <div class="right">
-            <img class="avatar" src="{{ url_for('static', filename='images/profile.jpg') }}" alt="Isiakpona Chuks - Profile Photo">
+        <h1 style="font-size: 3rem; font-weight: 800; margin-top: 20px; margin-bottom: 16px; color: #f3f4f6; line-height: 1.15;">
+            Building Production-Grade RAG & Agentic Orchestration Layer Engines
+        </h1>
+        
+        <p style="font-size: 1.2rem; line-height: 1.7; color: #9ca3af; margin-bottom: 32px;">
+            Hi, I'm <strong style="color: #fff;">Isiakpona Chuks</strong>. I specialize in moving complex predictive logic and autonomous intelligence models out of sandbox environments and into resilient, decoupled infrastructures using **Domain-Driven Design (DDD)** and **Hexagonal Architecture** patterns.
+        </p>
+
+        <div style="display: flex; gap: 16px; flex-wrap: wrap;">
+            <a class="btn" href="{{ url_for('main.portfolio') }}" style="padding: 12px 28px; font-weight: 600; text-decoration: none;">
+                Explore Systems Grid &rarr;
+            </a>
+            
+            <a id="hero-copilot-trigger" class="btn btn-secondary" href="#chat" style="background-color: transparent; border: 1px solid rgba(255, 255, 255, 0.15); color: #f3f4f6; padding: 12px 28px; font-weight: 600; text-decoration: none; transition: border-color 0.2s ease;">
+                Consult System Copilot
+            </a>
+        </div>
+    </header>
+
+    <hr style="border: 0; border-top: 1px solid rgba(255, 255, 255, 0.08); margin-bottom: 56px;">
+
+    <section class="core-capabilities">
+        <h2 style="font-size: 1.75rem; color: #f3f4f6; margin-bottom: 28px; font-weight: 700;">Architectural Principles & Core Competencies</h2>
+        
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 24px;">
+            
+            <div style="background: #111827; border: 1px solid rgba(255, 255, 255, 0.05); border-radius: 8px; padding: 20px;">
+                <h3 style="font-size: 1.15rem; color: #fff; margin-bottom: 8px; font-family: monospace;">[01] Intelligent Orchestration</h3>
+                <p style="font-size: 0.95rem; line-height: 1.6; color: #9ca3af; margin: 0;">
+                    Constructing multi-tier dense embedding matching, contextually scoped vector database vector stores (Pinecone), and production RAG pipeline analysis engines.
+                </p>
+            </div>
+
+            <div style="background: #111827; border: 1px solid rgba(255, 255, 255, 0.05); border-radius: 8px; padding: 20px;">
+                <h3 style="font-size: 1.15rem; color: #fff; margin-bottom: 8px; font-family: monospace;">[02] Clean Architectures</h3>
+                <p style="font-size: 0.95rem; line-height: 1.6; color: #9ca3af; margin: 0;">
+                    Isolating critical business application workflows via Ports & Adapters frameworks to ensure internal systems remain decoupled from infrastructure side-effects.
+                </p>
+            </div>
+
+            <div style="background: #111827; border: 1px solid rgba(255, 255, 255, 0.05); border-radius: 8px; padding: 20px;">
+                <h3 style="font-size: 1.15rem; color: #fff; margin-bottom: 8px; font-family: monospace;">[03] Full-Stack Data Pipelines</h3>
+                <p style="font-size: 0.95rem; line-height: 1.6; color: #9ca3af; margin: 0;">
+                    Engineering lightning-fast React applications backed by high-throughput Python REST APIs, secure DNS implementations, and Kimball Star Schema structures.
+                </p>
+            </div>
+
         </div>
     </section>
-
-    <hr style="margin-top: 48px; border: 0; border-top: 1px solid rgba(0,0,0,0.1); opacity: 0.2;">
-
-    <footer style="margin-top: 24px; font-size: 0.85rem; opacity: 0.75; display: flex; justify-content: space-between; flex-wrap: wrap; gap: 12px;">
-        <div>
-            {% if country == "Nigeria" %}
-                <span>Region: <strong>NGN</strong> Marketplace</span>
-            {% elif country == "usa" %}
-                <span>Region: <strong>USD</strong> Marketplace</span>
-            {% else %}
-                <span>Environment Asset Class: <strong>BTC</strong> (Default)</span>
-            {% endif %}
-        </div>
-
-        {% if source %}
-            <div>
-                <span>Inbound via: <em>{{ source }}</em></span>
-            </div>
-        {% endif %}
-    </footer>
+</main>
 {% endblock %}

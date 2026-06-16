@@ -34,47 +34,13 @@
         <div class="container">
             {% block content %}{% endblock %}
         </div>
-    </main>    
-
+    </main>   
     <footer>
         <p>&copy; 2026 - Isiakpona's Portfolio</p>
     </footer>
 
-   <script>
-
-        document.addEventListener("DOMContentLoaded", function() {
-            const hamburger = document.getElementById('hamburger');
-            const navMenu = document.getElementById('nav-menu');
-
-            // 1. MOBILE HAMBURGER TOGGLE CONTEXT
-            if (hamburger && navMenu) {
-                hamburger.addEventListener('click', function(e) {
-                    e.stopPropagation(); // Freezes event so global click handlers don't immediately clear it
-                    hamburger.classList.toggle('active');
-                    navMenu.classList.toggle('active');
-                });
-            }
-
-            // 2. DISMISS NAVIGATION IF USER CLICKS ELSEWHERE ON SITE
-            document.addEventListener('click', function(e) {
-                if (navMenu && navMenu.classList.contains('active')) {
-                    if (!navMenu.contains(e.target) && e.target !== hamburger) {
-                        hamburger.classList.remove('active');
-                        navMenu.classList.remove('active');
-                    }
-                }
-            });
-
-            // 3. COLLAPSE NAVIGATION WHEN SELECTING AN ACTIVE LINK
-            document.querySelectorAll('#nav-menu li a').forEach(link => {
-                link.addEventListener('click', function() {
-                    if (hamburger) hamburger.classList.remove('active');
-                    if (navMenu) navMenu.classList.remove('active');
-                });
-            });
-        });
-
-        // 4. LIGHTBOX / PREVIEW GRAPH PARSER
+    <script>
+        // 1. LIGHTBOX / PREVIEW GRAPH PARSER
         function openLightbox(src, title, desc, endpoint){
             const lb = document.getElementById('lightbox');
             if (!lb) return;
@@ -97,7 +63,7 @@
             }
         }
 
-        // 5. DELEGATED EVENT CAPTURE FOR PROJECT CARDS
+        // 2. DELEGATED EVENT CAPTURE FOR PROJECT CARDS
         document.addEventListener('click', function(e){
             const thumb = e.target.closest('.thumb-wrap');
             if(thumb){
@@ -160,21 +126,39 @@
     </div>
 
     <script>
-        
-        // Inside the DOMContentLoaded block in templates/base.html
-const heroTrigger = document.getElementById("hero-copilot-trigger");
-const chatFab = document.getElementById("agent-chat-toggle");
-
-if (heroTrigger && chatFab) {
-    heroTrigger.addEventListener("click", function(e) {
-        e.preventDefault(); // Stop the page from jumping to a hash anchor
-        chatFab.click();    // Triggers the drawer slider logic already built into base.html
-    });
-}
-
-
     document.addEventListener("DOMContentLoaded", function() {
-        // Variables declared cleanly exactly ONCE
+        // --- MOBILE NAV SECTIONS ---
+        const hamburger = document.getElementById('hamburger');
+        const navMenu = document.getElementById('nav-menu');
+
+        if (hamburger && navMenu) {
+            hamburger.addEventListener('click', function(e) {
+                e.stopPropagation();
+                hamburger.classList.toggle('active');
+                navMenu.classList.toggle('active');
+            });
+        }
+
+        // --- DISMISS NAVIGATION ON OUTER CLICK ---
+        document.addEventListener('click', function(e) {
+            if (navMenu && navMenu.classList.contains('active')) {
+                if (!navMenu.contains(e.target) && e.target !== hamburger) {
+                    hamburger.classList.remove('active');
+                    navMenu.classList.remove('active');
+                }
+            }
+        });
+
+        // --- LINK CLOSING INTERCEPTOR ---
+        document.querySelectorAll('#nav-menu li a').forEach(link => {
+            link.addEventListener('click', function() {
+                if (hamburger) hamburger.classList.remove('active');
+                if (navMenu) navMenu.classList.remove('active');
+            });
+        });
+
+        // --- GLOBAL HERO REDIRECT HOOKS ---
+        const heroTrigger = document.getElementById("hero-copilot-trigger");
         const chatFab = document.getElementById("agent-chat-toggle");
         const chatDrawer = document.getElementById("agent-chat-drawer");
         const closeBtn = document.getElementById("agent-drawer-close");
@@ -182,17 +166,21 @@ if (heroTrigger && chatFab) {
         const userInput = document.getElementById("agent-user-input");
         const messagesContainer = document.getElementById("agent-chat-messages");
 
-        // Single Unified Action Trigger Handler with Strong Event Walls
+        if (heroTrigger && chatFab) {
+            heroTrigger.addEventListener("click", function(e) {
+                e.preventDefault();
+                chatFab.click();
+            });
+        }
+
+        // --- ASSISTANT ENGINE EVENT DRAWER ---
         if (chatFab && chatDrawer) {
             chatFab.addEventListener("click", function(e) {
-                e.stopPropagation(); // Stops event cascading completely
-                e.preventDefault();  // Cancels browser-level layout recalculation
-                
+                e.stopPropagation();
+                e.preventDefault();
                 chatDrawer.classList.add("open");
                 chatDrawer.setAttribute("aria-hidden", "false");
-                
                 if (userInput) userInput.focus();
-                console.log("Chat drawer opened smoothly with bubble blocks active.");
             });
         }
 
@@ -204,7 +192,7 @@ if (heroTrigger && chatFab) {
             });
         }
 
-        // Async Payload Delivery Dispatcher
+        // --- ASYNC INFERENCE DISPATCH LAYER ---
         async function sendMessage() {
             if (!userInput || !messagesContainer) return;
             
