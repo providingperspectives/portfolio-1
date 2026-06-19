@@ -82,7 +82,7 @@ def portfolio():
             'description': 'Full-stack operational infrastructure designed for Multiplan Agro-Culture Farms, combining automated client workflows with rigorous data validation rules.', 
             'endpoint': 'multiplan-agro', 
             'image': 'multiplan.svg',
-            'stack': ['React', 'Python', 'DNS SEC', 'SQL'],
+            'stack': ['HTML', 'CSS', 'JavaScript', 'DNS SEC', 'GitHub'],
             'architecture': 'Clean Monolith'
         }
     ]
@@ -112,6 +112,14 @@ def portfolio_json():
             "validation": "pydantic",
             "vector_store": "pinecone",
             "status": "iterating"
+        },
+        "multiplan-agro": {
+            "language": "full-stack",
+            "frontend": "html/css/js",
+            "security": "dns-sec",
+            "repository": "GitHub",
+            "status": "active"
+            
         }
     }
     return jsonify(projects)
