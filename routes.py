@@ -26,6 +26,7 @@ ai_embed_client = AzureOpenAI(
 )
 
 @main.route("/api/agent/chat", methods=["POST"])
+@limiter.limit("5 per minute")
 def agent_chat():
     data = request.get_json() or {}
     user_query = data.get("message", "").strip()
