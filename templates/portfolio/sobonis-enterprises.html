@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+
+{% block title %}Sobonis Enterprise Platform{% endblock %}
+
+{% block content %}
+<article style="max-width: 980px; margin: 0 auto; padding: 24px 0;">
+    <nav style="margin-bottom: 28px; font-size: 0.9rem;">
+        <a href="{{ url_for('main.portfolio') }}" style="text-decoration: none; color: #3182ce;">&larr; Back to Systems Portfolio</a>
+    </nav>
+
+    <header style="margin-bottom: 36px;">
+        <div style="display: inline-block; background: #cffafe; color: #0e7490; font-size: 0.75rem; font-family: monospace; font-weight: 700; padding: 5px 9px; border-radius: 4px; margin-bottom: 14px; text-transform: uppercase; letter-spacing: 0.05em;">
+            Status: Active Enterprise Platform
+        </div>
+        <h1 style="font-size: clamp(2.2rem, 5vw, 4rem); line-height: 1.05; margin-bottom: 16px;">Sobonis Enterprise Platform</h1>
+        <p style="font-size: 1.2rem; max-width: 780px; opacity: 0.82; line-height: 1.65;">
+            Sobonis Enterprise Nig is a research-led technology platform built to help organizations evolve through software engineering, artificial intelligence, cloud and DevOps, data engineering, cybersecurity, and digital transformation.
+        </p>
+    </header>
+
+    <div style="border-radius: 14px; overflow: hidden; margin-bottom: 42px; background: #020617;">
+        <img src="{{ url_for('static', filename='images/sobonis.svg') }}" alt="Sobonis Enterprise platform architecture visual" style="width: 100%; display: block;">
+    </div>
+
+    <section style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 16px; margin-bottom: 42px;">
+        <div style="padding: 22px; border: 1px solid var(--border-color, #e2e8f0); border-radius: 10px;">
+            <h2 style="font-size: 1.1rem; margin-bottom: 9px;">Product surface</h2>
+            <p style="line-height: 1.55; opacity: 0.8;">Home, company, services, industries, research, portfolio, and authenticated member experiences.</p>
+        </div>
+        <div style="padding: 22px; border: 1px solid var(--border-color, #e2e8f0); border-radius: 10px;">
+            <h2 style="font-size: 1.1rem; margin-bottom: 9px;">Architecture</h2>
+            <p style="line-height: 1.55; opacity: 0.8;">Feature-driven organization with domain-oriented modules and a reusable design system.</p>
+        </div>
+        <div style="padding: 22px; border: 1px solid var(--border-color, #e2e8f0); border-radius: 10px;">
+            <h2 style="font-size: 1.1rem; margin-bottom: 9px;">Engineering focus</h2>
+            <p style="line-height: 1.55; opacity: 0.8;">Scalable, maintainable, accessible, and performance-first delivery using modern web tooling.</p>
+        </div>
+    </section>
+
+    <section style="margin-bottom: 36px;">
+        <h2 style="margin-bottom: 14px;">Technology system</h2>
+        <p style="line-height: 1.65; max-width: 800px; opacity: 0.85;">
+            The platform uses Next.js and TypeScript for the application layer, Tailwind CSS for its visual language, Framer Motion for purposeful interaction, and Supabase-backed workflows for authentication and member features.
+        </p>
+    </section>
+
+    <footer style="padding-top: 22px; border-top: 1px solid var(--border-color, #e2e8f0);">
+        <a href="https://sobonis-enterprises.vercel.app" target="_blank" rel="noopener noreferrer" style="color: #3182ce; font-weight: 600; text-decoration: none;">
+            View Sobonis on Website &#8599;
+        </a>
+    </footer>
+</article>
+{% endblock %}

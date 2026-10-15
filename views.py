@@ -84,6 +84,15 @@ def portfolio():
             'image': 'multiplan.svg',
             'stack': ['HTML', 'CSS', 'JavaScript', 'DNS SEC', 'GitHub'],
             'architecture': 'Clean Monolith'
+        },
+        {
+            'name': 'Sobonis Enterprise Platform',
+            'description': 'A research-led enterprise technology platform bringing software engineering, AI, cloud, data, and cybersecurity into one scalable digital transformation system.',
+            'endpoint': 'sobonis-enterprises',
+            'image': 'sobonis.svg',
+            'stack': ['Next.js', 'TypeScript', 'Tailwind CSS', 'Supabase', 'Framer Motion'],
+            'architecture': 'Feature-Driven',
+            'source_url': 'https://github.com/isiakpona-chuks/sobonis-enterprises'
         }
     ]
     return render_template("portfolio.html", projects=projects_list)
@@ -91,7 +100,7 @@ def portfolio():
 @main.route("/portfolio/<project>")
 def project(project):
     # Route mappings matching your elite architectural endpoints
-    valid_projects = ["mentor-qa", "grader-function", "multiplan-agro"]
+    valid_projects = ["mentor-qa", "grader-function", "multiplan-agro", "sobonis-enterprises"]
     if project in valid_projects:
         return render_template(f"portfolio/{project}.html")
     return redirect(url_for("main.not_found_404"))
@@ -119,7 +128,14 @@ def portfolio_json():
             "security": "dns-sec",
             "repository": "GitHub",
             "status": "active"
-            
+        },
+        "sobonis-enterprises": {
+            "language": "typescript",
+            "framework": "next.js",
+            "architecture": "feature-driven",
+            "styling": "tailwind-css",
+            "backend": "supabase",
+            "status": "active"
         }
     }
     return jsonify(projects)

@@ -42,6 +42,11 @@ KNOWLEDGE_BASE = [
         "id": "stack_01",
         "text": "Chuks' core technical stack includes Python (FastAPI, Flask, Pydantic), JavaScript/TypeScript (React, React Native, Vite), SQL, and Kimball Star Schema data modeling.",
         "category": "skills"
+    },
+    {
+        "id": "stack_nextjs_01",
+        "text": "Chuks' frontend and full-stack web capabilities include Next.js with React and TypeScript, supporting production web applications with server-rendered pages, API routes, and modern application architecture.",
+        "category": "skills"
     }
 ]
 
