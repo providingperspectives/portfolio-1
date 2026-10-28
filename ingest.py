@@ -39,6 +39,11 @@ KNOWLEDGE_BASE = [
         "category": "projects"
     },
     {
+        "id": "proj_sobonis_01",
+        "text": "Sobonis Enterprise Platform is a research-led enterprise technology platform for software engineering, artificial intelligence, cloud and DevOps, data engineering, cybersecurity, and digital transformation. Its feature-driven architecture uses Next.js and TypeScript for the application layer, Tailwind CSS for the design system, Framer Motion for purposeful interaction, and Supabase-backed workflows for authentication and member experiences.",
+        "category": "projects"
+    },
+    {
         "id": "stack_01",
         "text": "Chuks' core technical stack includes Python (FastAPI, Flask, Pydantic), JavaScript/TypeScript (React, React Native, Vite), SQL, and Kimball Star Schema data modeling.",
         "category": "skills"
