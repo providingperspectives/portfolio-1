@@ -18,6 +18,16 @@ class Settings(BaseSettings):
     PINECONE_API_KEY: str
     PINECONE_INDEX_NAME: str
 
+    # 4. Contact form email delivery
+    SMTP_HOST: str = ""
+    SMTP_PORT: int = 587
+    SMTP_USERNAME: str = ""
+    SMTP_PASSWORD: str = ""
+    SMTP_USE_TLS: bool = True
+    SMTP_USE_SSL: bool = False
+    SMTP_SENDER_EMAIL: str = ""
+    CONTACT_RECIPIENT_EMAIL: str = "juliusrlnd@gmail.com"
+
     model_config = SettingsConfigDict(
         env_file=".env", 
         env_file_encoding="utf-8",

@@ -58,7 +58,13 @@
             
             {% if request.args.get('sent') %}
                 <div style="background: #48bb78; color: #fff; border-radius: 6px; padding: 16px; margin-bottom: 24px; font-size: 0.95rem; font-weight: 600;">
-                    ✓ Transmission Successful. Your system payload has been registered and logged server-side.
+                    ✓ Message delivered successfully. I will respond using the email address you provided.
+                </div>
+            {% endif %}
+
+            {% if contact_error %}
+                <div role="alert" style="background: #c53030; color: #fff; border-radius: 6px; padding: 16px; margin-bottom: 24px; font-size: 0.95rem; font-weight: 600;">
+                    {{ contact_error }}
                 </div>
             {% endif %}
 

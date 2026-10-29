@@ -1,9 +1,14 @@
+import logging
+import smtplib
+from email.message import EmailMessage
+
 from flask import Blueprint, render_template, request, jsonify, redirect, url_for
 from pinecone import Pinecone
 from openai import AzureOpenAI
 from settings import get_settings
 
 main = Blueprint("main", __name__)
+logger = logging.getLogger(__name__)
 
 # Initialize your unified configuration object
 # Initialize your unified configuration object
@@ -49,13 +54,81 @@ def about_us():
 @main.route("/contact", methods=["GET", "POST"])
 def contact():
     if request.method == "POST":
-        name = request.form.get("name")
-        email = request.form.get("email")
-        message = request.form.get("message")
-        # Server-side logging placeholder
-        print(f"Contact form submitted: {name} <{email}>: {message}")
-        return redirect(url_for('main.contact', sent=1))
+        name = request.form.get("name", "").strip()
+        email = request.form.get("email", "").strip()
+        message = request.form.get("message", "").strip()
+
+        if not name or not email or not message:
+            return render_template(
+                "contact.html",
+                contact_error="Please complete your name, email, and message.",
+            ), 400
+
+        if any("\r" in value or "\n" in value for value in (name, email)):
+            return render_template(
+                "contact.html",
+                contact_error="The submitted contact details are invalid.",
+            ), 400
+
+        if not _send_contact_email(name, email, message):
+            return render_template(
+                "contact.html",
+                contact_error=(
+                    "Your message could not be delivered. Please try again later "
+                    "or use the direct email address listed on this page."
+                ),
+            ), 503
+
+        return redirect(url_for("main.contact", sent=1))
     return render_template("contact.html")
+
+
+def _send_contact_email(name: str, sender_email: str, message: str) -> bool:
+    """Deliver a contact form submission through the configured SMTP provider."""
+    sender_address = _settings.SMTP_SENDER_EMAIL or _settings.SMTP_USERNAME
+    if not _settings.SMTP_HOST or not sender_address:
+        logger.error("Contact email delivery is not configured.")
+        return False
+
+    email_message = EmailMessage()
+    email_message["Subject"] = f"Portfolio contact form: {name}"
+    email_message["From"] = sender_address
+    email_message["To"] = _settings.CONTACT_RECIPIENT_EMAIL
+    email_message["Reply-To"] = sender_email
+    email_message.set_content(
+        f"Name: {name}\n"
+        f"Email: {sender_email}\n\n"
+        f"Message:\n{message}\n"
+    )
+
+    try:
+        if _settings.SMTP_USE_SSL:
+            with smtplib.SMTP_SSL(
+                _settings.SMTP_HOST,
+                _settings.SMTP_PORT,
+                timeout=20,
+            ) as smtp:
+                if _settings.SMTP_USERNAME:
+                    smtp.login(_settings.SMTP_USERNAME, _settings.SMTP_PASSWORD)
+                smtp.send_message(email_message)
+        else:
+            with smtplib.SMTP(
+                _settings.SMTP_HOST,
+                _settings.SMTP_PORT,
+                timeout=20,
+            ) as smtp:
+                smtp.ehlo()
+                if _settings.SMTP_USE_TLS:
+                    smtp.starttls()
+                    smtp.ehlo()
+                if _settings.SMTP_USERNAME:
+                    smtp.login(_settings.SMTP_USERNAME, _settings.SMTP_PASSWORD)
+                smtp.send_message(email_message)
+    except (OSError, smtplib.SMTPException):
+        logger.exception("Contact email delivery failed.")
+        return False
+
+    return True
 
 @main.route("/portfolio")
 def portfolio():
